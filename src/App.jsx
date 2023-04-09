@@ -6,6 +6,8 @@ import './App.css'
 function App () {
   const [count, setCount] = useState(0)
 
+  // Comentario de prueba
+
   return (
     <div className='App'>
       <div>
