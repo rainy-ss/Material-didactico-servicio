@@ -97,6 +97,40 @@ const StyledNavBar = styled.nav`
     
 `;
 
+
+const StyledLinkBar = styled.div`
+    background-color: ${theme.palette.bar.light};
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: black;
+    text-decoration: none;
+    font-weight: 600;
+    white-space: nowrap;
+    height: 80%;
+    width: 100%
+    
+
+    padding: 0 10px;
+    transition: 0.2s ease;
+
+    &:hover{
+        color: rgba(0, 0, 0, 0.25);
+        border-bottom: 2px solid blueviolet;
+        cursor: pointer;
+    }
+
+    @media screen and (max-height: 550px) {
+        height: 100%;
+        &:hover{
+            color: rgba(0, 0, 0, 0.25);
+            border-bottom: 1px solid blueviolet;
+        }
+        
+    }
+        
+`;
+
 export function BarNav () {
     const [showMenu, setShowMenu] = useState(false);
 
@@ -116,13 +150,13 @@ export function BarNav () {
 
             <ul className={`${showMenu ? " barra-lista-enlaces active" : "barra-lista-enlaces "}`}>
                 <li className='barra-enlace'>
-                    <h2>holiii</h2>
+                    <StyledLinkBar>holiii</StyledLinkBar>
                 </li>
                 <li className='barra-enlace'>
-                    <h3>hi 2</h3>
+                    <StyledLinkBar>hi 2</StyledLinkBar>
                 </li>
                 <li className='barra-enlace'>
-                    <h3>hi 3</h3>
+                    <StyledLinkBar>hi 3</StyledLinkBar>
                 </li>
             </ul>
             <div className='icono-barra'>
