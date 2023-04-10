@@ -1,8 +1,43 @@
 import React, { useState } from 'react';
+import { FaBars, FaRegWindowClose } from 'react-icons/fa';
 import UAM from '../imagenes/UAM.svg';
 import styled from 'styled-components';
-import { FaBars, FaRegWindowClose } from 'react-icons/fa';
+import { Link } from 'react-router-dom';
 import { theme } from '../theme';
+
+export function BarNav () {
+    const [showMenu, setShowMenu] = useState(false);
+
+    function handleMenu () {
+        if (showMenu) {
+            setShowMenu(false);
+        } else {
+            setShowMenu(true);
+        }
+    }
+
+    return (
+
+        <StyledNavBar className='barra-navegacion'>
+
+            <img className='logo-uam' src={UAM} />
+
+            <ul className={`${showMenu ? ' barra-lista-enlaces active' : 'barra-lista-enlaces '}`}>
+                <li className='barra-enlace'>
+                    <StyledLinkBar to={'/'}>Home</StyledLinkBar>
+                </li>
+                <li className='barra-enlace'>
+                    <StyledLinkBar to={'/lista-temas-disponibles'}>Lista de Temas</StyledLinkBar>
+                </li>
+
+            </ul>
+            <div className='icono-barra'>
+                <button onClick={() => handleMenu()}>{showMenu ? <FaRegWindowClose /> : <FaBars />}</button>
+            </div>
+
+        </StyledNavBar>
+    );
+}
 
 const StyledNavBar = styled.nav`
     background-color: ${theme.palette.primary.main};
@@ -97,8 +132,7 @@ const StyledNavBar = styled.nav`
     
 `;
 
-
-const StyledLinkBar = styled.div`
+const StyledLinkBar = styled(Link)`
     background-color: ${theme.palette.bar.light};
     display: flex;
     justify-content: center;
@@ -108,8 +142,7 @@ const StyledLinkBar = styled.div`
     font-weight: 600;
     white-space: nowrap;
     height: 80%;
-    width: 100%
-    
+    width: 100%;
 
     padding: 0 10px;
     transition: 0.2s ease;
@@ -126,43 +159,7 @@ const StyledLinkBar = styled.div`
             color: rgba(0, 0, 0, 0.25);
             border-bottom: 1px solid blueviolet;
         }
-        
+
     }
-        
+
 `;
-
-export function BarNav () {
-    const [showMenu, setShowMenu] = useState(false);
-
-    function handleMenu () {
-        if (showMenu) {
-            setShowMenu(false);
-        } else {
-            setShowMenu(true);
-        }
-    }
-
-    return (
-
-        <StyledNavBar className='barra-navegacion'>
-
-            <img className='logo-uam' src={UAM} />
-
-            <ul className={`${showMenu ? " barra-lista-enlaces active" : "barra-lista-enlaces "}`}>
-                <li className='barra-enlace'>
-                    <StyledLinkBar>holiii</StyledLinkBar>
-                </li>
-                <li className='barra-enlace'>
-                    <StyledLinkBar>hi 2</StyledLinkBar>
-                </li>
-                <li className='barra-enlace'>
-                    <StyledLinkBar>hi 3</StyledLinkBar>
-                </li>
-            </ul>
-            <div className='icono-barra'>
-                <button onClick={() => handleMenu()}>{showMenu ? <FaRegWindowClose /> : <FaBars />}</button>
-            </div>
-
-        </StyledNavBar>
-    );
-}

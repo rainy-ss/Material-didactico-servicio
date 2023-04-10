@@ -18,6 +18,11 @@
     ],
     "rules": {
         "semi":["error","always"],
-        "indent":["error", 4]
+        "indent":["error", 4],
+        "react/self-closing-comp": ["error", {
+            "component": true,
+            "html": true
+          }],
+        "no-console":"warn"
     }
 }
