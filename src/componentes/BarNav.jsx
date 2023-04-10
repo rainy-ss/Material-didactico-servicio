@@ -65,8 +65,8 @@ const StyledNavBar = styled.nav`
             right: -500px;
             width: 300px;
             height: 100vh;
-            background-color: blanchedalmond;
-            color: black;
+            background-color: ${theme.palette.primary.main};
+            color: ${theme.palette.primary.contrastText};
             box-shadow: 0 40px 60px rgba(0, 0, 0, 0.1);
             padding: 40px 0 0 10px;
             transition: 0.3s ease-in-out;
@@ -91,6 +91,10 @@ const StyledNavBar = styled.nav`
         .icono-barra button{
             display: block;
             visibility: visible;
+            background-color: ${theme.palette.bar.dark};
+            color: ${theme.palette.bar.light};
+            border: none;
+            border-radius: 5px;
         }
 
     }
@@ -103,7 +107,7 @@ const StyledLinkBar = styled.div`
     display: flex;
     justify-content: center;
     align-items: center;
-    color: black;
+    color: ${theme.palette.primary.contrastText};
     text-decoration: none;
     font-weight: 600;
     white-space: nowrap;
@@ -112,19 +116,19 @@ const StyledLinkBar = styled.div`
     
 
     padding: 0 10px;
-    transition: 0.2s ease;
+    transition: 0.1s ease;
 
     &:hover{
-        color: rgba(0, 0, 0, 0.25);
-        border-bottom: 2px solid blueviolet;
+        color: ${theme.palette.info.main};
+        border-bottom: 2px solid ${theme.palette.info.light};
         cursor: pointer;
     }
 
     @media screen and (max-height: 550px) {
         height: 100%;
         &:hover{
-            color: rgba(0, 0, 0, 0.25);
-            border-bottom: 1px solid blueviolet;
+            color: ${theme.palette.info.main};
+            border-bottom: 1px solid ${theme.palette.info.light};
         }
         
     }
