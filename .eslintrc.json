@@ -19,10 +19,12 @@
     "rules": {
         "semi":["error","always"],
         "indent":["error", 4],
+        "react/prop-types": "off",
+        "no-console":"warn",
         "react/self-closing-comp": ["error", {
             "component": true,
             "html": true
-          }],
-        "no-console":"warn"
+          }]
+        
     }
 }
