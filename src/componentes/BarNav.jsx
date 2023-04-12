@@ -27,7 +27,7 @@ export function BarNav () {
                     <StyledLinkBar to={'/'}>Home</StyledLinkBar>
                 </li>
                 <li className='barra-enlace'>
-                    <StyledLinkBar to={'/lista-temas-disponibles'}>Lista de Temas</StyledLinkBar>
+                    <StyledLinkBar to={'/temas'}>Lista de Temas</StyledLinkBar>
                 </li>
 
             </ul>
@@ -46,7 +46,7 @@ const StyledNavBar = styled.nav`
     justify-content:space-between;
     align-items: center;
     width: 95vw;
-    height: 15vh;
+    height: 10vh;
     font-size: 1.2rem;
     padding: 10px 30px;
     box-shadow: 0 5px 15px rgba(0, 0, 0, 0.25);

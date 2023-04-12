@@ -1,7 +1,7 @@
 import React from 'react';
 import { HashRouter, Route, Routes } from 'react-router-dom';
 import { Home } from './paginas/Home/Home';
-import { ListaDeTemas } from './paginas/Lista de temas/ListaDeTemas';
+import { Temas } from './paginas/Lista de temas/Temas.jsx';
 import './App.css';
 
 function App () {
@@ -11,7 +11,7 @@ function App () {
 
                 <Routes>
                     <Route path='/' Component={Home} />
-                    <Route path='/lista-temas-disponibles' Component={ListaDeTemas}/>
+                    <Route path='/temas' Component={Temas}/>
                 </Routes>
             </HashRouter>
 

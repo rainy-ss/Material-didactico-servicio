@@ -18,9 +18,9 @@ export function TituloConImagen ({ imagen = Casa, titulo = 'Soy un titulo' }) {
 
 const StyledDiv = styled.div`
 display: flex;
-justify-content: space-around;
 align-items: center;
-background-color: coral;
+gap: 30px;
+background-color: cadetblue;
 
 `;
 
