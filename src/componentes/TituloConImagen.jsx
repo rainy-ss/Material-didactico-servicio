@@ -2,7 +2,7 @@ import React from 'react';
 import Casa from '../imagenes/casa.png';
 import styled from 'styled-components';
 
-export function TituloConImagen ({ imagen = Casa, titulo = 'Soy un titulo' }) {
+export function TituloConImagen ({ imagen = Casa, titulo }) {
     return (
         <StyledDiv>
             <StyledDivIMG>
@@ -19,6 +19,7 @@ export function TituloConImagen ({ imagen = Casa, titulo = 'Soy un titulo' }) {
 const StyledDiv = styled.div`
 display: flex;
 align-items: center;
+padding: 10px;
 gap: 30px;
 background-color: cadetblue;
 

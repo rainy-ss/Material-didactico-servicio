@@ -1,16 +1,18 @@
 import React from 'react';
 import styled from 'styled-components';
 import { TituloConImagen } from './TituloConImagen.jsx';
-import { ListaQuiz } from '../servicios/ListaQuiz.jsx';
+import { ListaQuizzes } from '../servicios/ListaQuizzes.jsx';
 
 export function Tema ({ informacion }) {
     return (
         <StyledContenedor>
-            <TituloConImagen />
+            <TituloConImagen
+                titulo={informacion.nombre}
+            />
 
             <p>{informacion.descripcion}</p>
 
-            <ListaQuiz
+            <ListaQuizzes
                 quizzesDisponibles = {informacion.quizDisponible}
             />
 
@@ -20,7 +22,7 @@ export function Tema ({ informacion }) {
 
 const StyledContenedor = styled.div`
 
-background-color: aquamarine;
+background-color: blueviolet;
 width: 400px;
 padding: 10px;
 display: flex;
