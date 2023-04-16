@@ -3,6 +3,7 @@ import { caracteristicasQuiz } from '../scripts/caracteristicasQuiz.js';
 import { BotonQuiz } from '../componentes/BotonQuiz.jsx';
 import styled from 'styled-components';
 
+
 export function ListaQuizzes ({ quizzesDisponibles = [] }) {
     const [quizzesTema, setQuizzesTema] = useState([]);
 
@@ -23,29 +24,32 @@ export function ListaQuizzes ({ quizzesDisponibles = [] }) {
     }, []);
 
     return (
-        <StyledDiv>
+        <StyledQuizzes>
+            
+                {
+                    quizzesTema.map((elemento) => (
 
-            {
-                quizzesTema.map((elemento) => (
-
-                    <div key={elemento.id}>
-                        <BotonQuiz
-                            caracteristicas={elemento}
-                        />
-                    </div>
-                ))
-            }
-        </StyledDiv>
+                        <div key={elemento.id}>
+                            <BotonQuiz
+                                caracteristicas={elemento}
+                            />
+                        </div>
+                    ))
+                }
+            
+        </StyledQuizzes>
     );
 }
 
-const StyledDiv = styled.div`
+const StyledQuizzes = styled.div`
 
-background-color: coral;
-display: flex;
-justify-content: space-around;
-align-items: center;
-padding: 15px;
-gap: 8px;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    padding: 15px;
+    gap: 8px;
+
+    
+    
 
 `;

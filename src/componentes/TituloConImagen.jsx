@@ -2,13 +2,13 @@ import React from 'react';
 import Casa from '../imagenes/casa.png';
 import styled from 'styled-components';
 
-export function TituloConImagen ({ imagen = Casa, titulo }) {
+export function TituloConImagen ({ imagen = Casa, titulo, colorTitulo }) {
     return (
-        <StyledDiv>
+        <StyledDiv >
             <StyledDivIMG>
                 <img src={imagen} />
             </StyledDivIMG>
-            <StyledDivH4>
+            <StyledDivH4 variant = {colorTitulo}>
                 <h4>{titulo}</h4>
             </StyledDivH4>
 
@@ -17,27 +17,28 @@ export function TituloConImagen ({ imagen = Casa, titulo }) {
 }
 
 const StyledDiv = styled.div`
-display: flex;
-align-items: center;
-padding: 10px;
-gap: 30px;
-background-color: cadetblue;
+    display: flex;
+    align-items: center;
+    padding: 10px;
+    gap: 20px;
+
 
 `;
 
 const StyledDivH4 = styled.div`
+    color: ${props => props.variant};
 `;
 
 const StyledDivIMG = styled.div`
 
-max-width: 50px;
-max-height: 50px;
+    max-width: 50px;
+    max-height: 50px;
 
 
-img{
-    height: 100%;
-    width: 100%;
-    border-radius: 50%;
-}
+    img{
+        height: 100%;
+        width: 100%;
+        border-radius: 50%;
+    }
 
 `;

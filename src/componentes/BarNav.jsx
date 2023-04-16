@@ -40,8 +40,7 @@ export function BarNav () {
 }
 
 const StyledNavBar = styled.nav`
-    background-color: ${theme.palette.primary.main};
-    color: ${theme.palette.primary.contrastText};
+    background-color: ${theme.palette.Home.navBar};
     display: flex;
     justify-content:space-between;
     align-items: center;
@@ -100,8 +99,8 @@ const StyledNavBar = styled.nav`
             right: -500px;
             width: 300px;
             height: 100vh;
-            background-color: ${theme.palette.primary.main};
-            color: ${theme.palette.primary.contrastText};
+            background-color: ${theme.palette.Home.navBar};
+            color: ${theme.palette.Home.navLinks};
             box-shadow: 0 40px 60px rgba(0, 0, 0, 0.1);
             padding: 40px 0 0 10px;
             transition: 0.3s ease-in-out;
@@ -126,8 +125,8 @@ const StyledNavBar = styled.nav`
         .icono-barra button{
             display: block;
             visibility: visible;
-            background-color: ${theme.palette.bar.dark};
-            color: ${theme.palette.bar.light};
+            background-color: ${theme.palette.Home.navBar};
+            color: ${theme.palette.Home.textColor};
             border: none;
             border-radius: 5px;
         }
@@ -137,31 +136,32 @@ const StyledNavBar = styled.nav`
 `;
 
 const StyledLinkBar = styled(Link)`
-    background-color: ${theme.palette.bar.light};
     display: flex;
     justify-content: center;
     align-items: center;
-    color: ${theme.palette.primary.contrastText};
+    color: ${theme.palette.Home.navLinks};
     text-decoration: none;
     font-weight: 600;
     white-space: nowrap;
     height: 80%;
     width: 100%;
+    border-bottom: 2px solid transparent;
 
     padding: 0 10px;
     transition: 0.1s ease;
 
     &:hover{
-        color: ${theme.palette.info.main};
-        border-bottom: 2px solid ${theme.palette.info.light};
+        color: ${theme.palette.Home.contrastText};
+        border-bottom: 2px solid ${theme.palette.Home.contrastColor};
         cursor: pointer;
     }
 
     @media screen and (max-height: 550px) {
         height: 100%;
+        border-bottom: 1px solid transparent;
         &:hover{
-            color: ${theme.palette.info.main};
-            border-bottom: 1px solid ${theme.palette.info.light};
+            color: ${theme.palette.Home.contrastText};
+            border-bottom: 1px solid ${theme.palette.Home.contrastColor};
         }
 
     }

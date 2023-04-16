@@ -1,66 +1,48 @@
 export const theme = {
     palette: {
-        primary: {
-            main: '#252831',
-            light: '#565960',
-            dark: '#1e2229',
-            contrastText: '#f1ebeb'
-        },
-        secondary: {
-            main: '#c53a60',
-            light: '#d46482',
-            dark: '#8a2843',
-            contrastText: '#f1ecec'
-        },
-        background: {
-            paper: '#90CAF9',
-            default: '#E1DAF1'
-        },
-        text: {
-            secondary: '#423e43',
-            primary: '#5d4037',
-            disabled: 'rgba(49,48,48,0.38)',
-            hint: 'rgba(14,11,11,0.38)'
-        },
-        error: {
-            main: '#e53935',
-            light: '#ec6360',
-            dark: '#a62826',
-            contrastText: '#efe8e8'
-        },
-        warning: {
-            main: '#fba62a',
-            light: '#fbb755',
-            dark: '#b3771f',
-            contrastText: 'rgba(14,13,13,0.87)'
-        },
-        info: {
-            main: '#8bb38d',
-            light: '#b7d4b8',
-            dark: '#4d674e',
-            contrastText: 'rgba(12,12,12,0.87)'
-        },
-        success: {
-            main: '#4cad50',
-            light: '#6fbb73',
-            dark: '#357738',
-            contrastText: 'rgba(26,26,26,0.87)'
-        },
-        divider: 'rgba(18,18,18,0.12)',
-        bar: {
-            main: '#4e5062',
-            light: '#737587',
-            dark: '#363844',
-            contrastText: '#1e2928'
-        },
-        timer: {
-            main: '#3d4c50',
-            light: '#646f73',
-            dark: '#2b3639',
-            contrastText: '#f1f0f0'
-        },
-        button: {
-            innerShadow: '#ABBABF'
-        }
-    }
-};
+      Home: {
+          navBar: '#37acac',
+          navLinks: '#f5f5f5',
+          textColor: '#4d4d4d',
+          contrastText: '#ffe96d',
+          contrastColor: '#FFD700',
+          backgroundPrimary: '#F2F2F2',
+          backgroundSecondary: '#cecfdf',
+      },
+      temas: {
+          main: '#b9d6dd',
+          secondary: '#f2faf3',
+          textColor: '#3b4a42',
+          contrastText: '#f11860',
+          icon: '#536359',
+          title: '#536359',
+          buttonText: '#dbdbdb',
+          buttonBackground: '#3d4761',
+          buttonBorder: '#3d3b4e',
+          buttonHover: '#8d9b94',
+          busquedaBorder: '#7da6b1',
+          busquedaText: '#9ba4bd',
+          busquedaFocus: '#2d3449',
+      },
+      Quiz: {
+          background: '#5e5e61',
+          questBackground: '#46C2CB',
+          optionBackground: '#f2f7a1',
+          optionHoverBackground: '#f3e281',
+          UpperBar:{
+              titleText: '#e4dfdf',
+              tempoBackground: '#ece8bc',
+              tempoText: '#434f57',
+              background: '#151515',
+          },
+          BottomBar:{
+              background: '#3a3634',
+              textColor: '#ffffff',
+              textBackground: '#635e5b',
+          },
+      },
+    },
+  };
+   
+  
+  
