@@ -3,35 +3,31 @@ import styled from 'styled-components';
 import { TituloConImagen } from './TituloConImagen.jsx';
 import { ListaQuizzes } from '../servicios/ListaQuizzes.jsx';
 import { theme } from '../theme.js';
-import { HiPlus, HiOutlineMinus } from "react-icons/hi2";
+import { HiPlus, HiOutlineMinus } from 'react-icons/hi2';
 
-export function Tema ({ informacion, id }) {
+export function Tema ({ informacion, mostrar = false }) {
+    const [clicked, setClicked] = useState(mostrar);
 
-    const [clicked, setClicked] = useState([]);
+    // Modificaciones: La descripción y los botones no se deben renderizar si la tarjeta esta contraida.
 
-     const toggle = (i) => {
-        if (clicked.includes( i )) {
-            let ind = clicked.indexOf(i);
-            return setClicked(arr =>{ return [...arr.slice(0, ind),...arr.slice(ind + 1)]});
-        } else {
-            setClicked(arr => [...arr, i]);
-            
-        }
-    }
+    function toggle () {
+        setClicked(prev => !prev);
+    };
 
     return (
         <StyledContenedor>
-            <div className='headerTema' onClick={() => toggle(id)}>
+            <div className='headerTema' onClick={toggle}>
                 <TituloConImagen
                     titulo={informacion.nombre}
                     colorTitulo = {theme.palette.temas.title}
                 />
-                <p>{clicked.includes(id)  ? <HiOutlineMinus/> : <HiPlus/>}</p>
+                <p>{clicked ? <HiOutlineMinus/> : <HiPlus/>}</p>
             </div>
-            <div  className={clicked.includes(id) ? "contenidoTema mostrar" : "contenidoTema"}>
+            <div className={clicked ? 'contenidoTema mostrar' : 'contenidoTema'}>
                 <p>{informacion.descripcion}</p>
 
                 <ListaQuizzes
+                    nombreRuta = {informacion.nombreRuta}
                     quizzesDisponibles = {informacion.quizDisponible}
                 />
             </div>

@@ -1,22 +1,19 @@
-import React, { useState } from 'react';
+import React from 'react';
 import { Tema } from '../componentes/Tema.jsx';
 import { bancoTemas } from '../scripts/bancoTemas.js';
 import styled from 'styled-components';
 import { theme } from '../theme';
 
 export function ListaTemas () {
-    const [temas] = useState(bancoTemas);
-
     // Añadir buscador de temas
 
     return (
         <StyledDiv>
             {
-                temas.map((elemento) => (
+                bancoTemas.map((elemento) => (
                     <div key={elemento.id}>
                         <Tema
                             informacion= {elemento}
-                            id = {elemento.id}
                         />
                     </div>
 

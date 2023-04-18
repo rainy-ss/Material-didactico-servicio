@@ -4,7 +4,7 @@ export const caracteristicasQuiz = [
         nombre: 'Ilimitado con tiempo',
         descripcion: 'Soy una descripcion del quiz solicitado 0',
         temporizador: 10,
-        maxPreguntas: 20,
+        maxPreguntas: 0,
         reglas: [
             { regla: 'Regla 1' },
             { regla: 'Regla 2' }
@@ -23,7 +23,7 @@ export const caracteristicasQuiz = [
     },
     {
         id: 2,
-        nombre: 'Ilimitado con tiempo',
+        nombre: 'Limitado con tiempo',
         descripcion: 'Soy una descripcion del quiz solicitado 2',
         temporizador: 10,
         maxPreguntas: 20,
@@ -34,7 +34,7 @@ export const caracteristicasQuiz = [
     },
     {
         id: 3,
-        nombre: 'Ilimitado con tiempo',
+        nombre: 'Limitado sin tiempo',
         descripcion: 'Soy una descripcion del quiz solicitado 3',
         temporizador: 10,
         maxPreguntas: 20,

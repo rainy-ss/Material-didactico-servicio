@@ -3,8 +3,7 @@ import { caracteristicasQuiz } from '../scripts/caracteristicasQuiz.js';
 import { BotonQuiz } from '../componentes/BotonQuiz.jsx';
 import styled from 'styled-components';
 
-
-export function ListaQuizzes ({ quizzesDisponibles = [] }) {
+export function ListaQuizzes ({ nombreRuta, quizzesDisponibles = [] }) {
     const [quizzesTema, setQuizzesTema] = useState([]);
 
     function filtrarPorID () {
@@ -25,18 +24,19 @@ export function ListaQuizzes ({ quizzesDisponibles = [] }) {
 
     return (
         <StyledQuizzes>
-            
-                {
-                    quizzesTema.map((elemento) => (
 
-                        <div key={elemento.id}>
-                            <BotonQuiz
-                                caracteristicas={elemento}
-                            />
-                        </div>
-                    ))
-                }
-            
+            {
+                quizzesTema.map((elemento) => (
+
+                    <div key={elemento.id}>
+                        <BotonQuiz
+                            nombreRuta = {nombreRuta}
+                            caracteristicas={elemento}
+                        />
+                    </div>
+                ))
+            }
+
         </StyledQuizzes>
     );
 }
@@ -45,6 +45,7 @@ const StyledQuizzes = styled.div`
 
     display: flex;
     justify-content: space-around;
+    flex-wrap: wrap;
     align-items: center;
     padding: 15px;
     gap: 8px;

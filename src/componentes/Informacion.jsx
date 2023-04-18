@@ -1,13 +1,22 @@
 import React from 'react';
 import styled from 'styled-components';
 import { theme } from '../theme.js';
-import { Link } from 'react-router-dom';
 
-export function BotonQuiz ({ nombreRuta, caracteristicas }) {
+export function Informacion ({ mostrar, isStarted }) {
+    /*
+        Estado para mostrar la ventana
+     */
     return (
-        <StyledDiv>
-            <StyledBoton as={Link} to = {`/quiz/${nombreRuta}/${caracteristicas.id}`}>{caracteristicas.nombre}</StyledBoton>
-        </StyledDiv>
+        <div>
+            <p>Soy una descripción sobre el quiz a realizar y sus reglas</p>
+            {
+                !isStarted &&
+                    <div>
+                        <StyledBoton onClick={mostrar}>Soy un boton para comenzar el quiz</StyledBoton>
+                        <StyledBoton onClick={mostrar}>Soy un boton para salir el quiz</StyledBoton>
+                    </div>
+            }
+        </div>
     );
 }
 
@@ -28,12 +37,4 @@ border-radius: 8px;
     hover {
     background-color: ${theme.palette.temas.buttonHover};
   }
-`;
-
-const StyledDiv = styled.div`
-
-  display: flex;
-  justify-content: center;
-  align-items: center;
-
 `;
