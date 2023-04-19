@@ -14,13 +14,15 @@ export function Temas () {
 }
 
 const StyledTemas = styled.div`
-
+    margin: auto;
+    width: 100vw;
     display: flex;
     flex-direction: column;
     align-items: center;
     margin-top: 20vh;
     margin-bottom: 10vh;
     overflow: hidden visible;
+    height: 100%;
     
     
 

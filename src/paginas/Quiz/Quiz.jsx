@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import styled from 'styled-components';
 import { BarraSuperior } from '../../componentes/BarraSuperior.jsx';
 import { Panel } from '../../componentes/Panel.jsx';
 import { BarraInferior } from '../../componentes/BarraInferior.jsx';
@@ -30,7 +31,7 @@ export function Quiz ({ objTema, objQuiz, arreglo = [] }) {
     }
 
     return (
-        <div>
+        <StyledQuiz>
 
             <BarraSuperior
                 nombre = {objTema.nombre}
@@ -58,7 +59,19 @@ export function Quiz ({ objTema, objQuiz, arreglo = [] }) {
 
                         : informacion
             }
-        </div>
+        </StyledQuiz>
 
     );
 }
+
+const StyledQuiz = styled.div`
+    background-color: #95998c;
+    width: 100vw;
+    display: flex;
+    flex-direction: column;
+    
+    align-items: center;
+    height: 100vh;
+    
+    
+`;
