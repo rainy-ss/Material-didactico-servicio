@@ -9,11 +9,19 @@ export function BarraInferior ({ terminar, temporizador, informacion }) {
     function mostrar () {
         setShowInfo(prev => !prev);
     }
+
+    const variantOptions = {
+        Tempo: {
+            backgroundColor: theme.palette.Quiz.BottomBar.textBackground,
+            color: theme.palette.Quiz.BottomBar.textColor
+        }
+    };
+
     return (
         <StyledDiv variant = {theme.palette.Quiz.BottomBar.background}>
             <button onClick={mostrar}>informacion</button>
             { showInfo && informacion }
-            <StyledTempo>0:00</StyledTempo>
+            <StyledTempo variant = {variantOptions}>0:00</StyledTempo>
             <button>rips</button>
         </StyledDiv>
     );
@@ -31,7 +39,8 @@ const StyledDiv = styled.div`
 `;
 
 const StyledTempo = styled.div`
-    background-color: #e0c1cf;
+    background-color: ${props => props.variant.Tempo.backgroundColor};
+    color: ${props => props.variant.Tempo.color};
     max-width: 150px;
     height: 100%;
     display: flex;
