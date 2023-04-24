@@ -9,6 +9,7 @@ export function Quiz ({ objTema, objQuiz, arreglo = [] }) {
     const [isStarted, setIsStarted] = useState(false);
     const [isFinished, setIsFinished] = useState(false);
     const [showInfo, setShowInfo] = useState();
+    const [tiempoFinal, setTiempoFinal] = useState(0);
 
     const informacion = <Informacion
         iniciar = {iniciar}
@@ -39,6 +40,10 @@ export function Quiz ({ objTema, objQuiz, arreglo = [] }) {
         setIsFinished(true);
     }
 
+    function determinarTiempo (tiempo) {
+        setIsFinished(tiempo);
+    }
+
     return (
         <StyledQuiz>
 
@@ -64,7 +69,8 @@ export function Quiz ({ objTema, objQuiz, arreglo = [] }) {
                                 informacion = {informacion}
                                 showInfo = {showInfo}
                                 mostrar = {mostrar}
-
+                                isFinished = {isFinished}
+                                tiempoFinal = {determinarTiempo}
                             />
                         </>
 
