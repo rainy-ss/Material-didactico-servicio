@@ -20,7 +20,7 @@ export function BarNav () {
 
         <StyledNavBar className='barra-navegacion'>
 
-            <img className='logo-uam' src={UAM} />
+            <img className='logo-uam' src={UAM} alt={'logo uam'} role='img'/>
 
             <ul className={`${showMenu ? ' barra-lista-enlaces active' : 'barra-lista-enlaces '}`}>
                 <li className='barra-enlace'>
@@ -80,22 +80,35 @@ const StyledNavBar = styled.nav`
     @media screen and (max-height: 550px) {
 
         width: 100vw;
-        height: 10vh;
+        height: 15vh;
         padding: 5px;
-        font-size: 0.8rem;
+        font-size: 1.2rem;
+        position: absolute;
+        margin-bottom: 20px;
+        box-shadow: 0 5px 5px rgba(0, 0, 0, 0.25);
+
+        .icono-barra button{
+            display: block;
+            background-color: ${theme.palette.Home.navBar};
+            color: ${theme.palette.Home.textColor};
+            border: none;
+            border-radius: 5px;
+            height: 50%;
+            font-size: 0.8rem;
+        }
         
     }
 
     @media screen and (max-width: 768px) {
+        
         height: 10vh;
-
         .barra-lista-enlaces{
             display: flex;
             flex-direction: column;
             align-items: flex-start;
             justify-content: flex-start;
             position: fixed;
-            top: 60px;
+            top: 50px;
             right: -500px;
             width: 300px;
             height: 100vh;
@@ -120,6 +133,7 @@ const StyledNavBar = styled.nav`
         .icono-barra{
             display: block;
             visibility: visible;
+            
         }
 
         .icono-barra button{
@@ -129,6 +143,7 @@ const StyledNavBar = styled.nav`
             color: ${theme.palette.Home.textColor};
             border: none;
             border-radius: 5px;
+            
         }
 
     }

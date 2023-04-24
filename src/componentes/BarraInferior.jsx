@@ -2,13 +2,8 @@ import React, { useState } from 'react';
 import styled from 'styled-components';
 import { theme } from '../theme.js';
 
-export function BarraInferior ({ terminar, temporizador, informacion }) {
-    const [showInfo, setShowInfo] = useState();
+export function BarraInferior ({ terminar, temporizador, showInfo, informacion, mostrar }) {
     const [showExit, setShowExit] = useState();
-
-    function mostrar () {
-        setShowInfo(prev => !prev);
-    }
 
     const variantOptions = {
         Tempo: {

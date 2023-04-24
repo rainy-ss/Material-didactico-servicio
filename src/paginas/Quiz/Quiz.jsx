@@ -8,8 +8,13 @@ import { Informacion } from '../../componentes/Informacion.jsx';
 export function Quiz ({ objTema, objQuiz, arreglo = [] }) {
     const [isStarted, setIsStarted] = useState(false);
     const [isFinished, setIsFinished] = useState(false);
+    const [showInfo, setShowInfo] = useState();
 
-    const informacion = <Informacion mostrar = {mostrar} isStarted = {isStarted} />;
+    const informacion = <Informacion
+        iniciar = {iniciar}
+        isStarted = {isStarted}
+        mostrar = {mostrar}
+    />;
     /*
 
         BarraSuperior:
@@ -22,8 +27,12 @@ export function Quiz ({ objTema, objQuiz, arreglo = [] }) {
             2.Tipo de quiz
             3.Informacion
     */
-    function mostrar () {
+    function iniciar () {
         setIsStarted(prev => !prev);
+    }
+
+    function mostrar () {
+        setShowInfo(prev => !prev);
     }
 
     function terminar () {
@@ -53,6 +62,8 @@ export function Quiz ({ objTema, objQuiz, arreglo = [] }) {
                                 terminar = {terminar}
                                 temporizador = {objQuiz.temporizador}
                                 informacion = {informacion}
+                                showInfo = {showInfo}
+                                mostrar = {mostrar}
 
                             />
                         </>

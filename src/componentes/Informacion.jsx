@@ -3,14 +3,14 @@ import styled from 'styled-components';
 import { HiXMark } from 'react-icons/hi2';
 import { theme } from '../theme.js';
 
-export function Informacion ({ mostrar, isStarted }) {
+export function Informacion ({ iniciar, isStarted, mostrar }) {
     /*
         Estado para mostrar la ventana
      */
     return (
         <StyledInfo>
             <StyledIcon>
-                <HiXMark />
+                <HiXMark onClick={mostrar}/>
             </StyledIcon>
             <StyledContent>
                 <p>Soy una descripción sobre el quiz a realizar y sus reglas</p>
@@ -19,8 +19,8 @@ export function Informacion ({ mostrar, isStarted }) {
             {
                 !isStarted &&
                 <StyledBtnDiv>
-                    <StyledBoton onClick={mostrar}>Soy un boton para comenzar el quiz</StyledBoton>
-                    <StyledBoton onClick={mostrar}>Soy un boton para salir el quiz</StyledBoton>
+                    <StyledBoton onClick={iniciar}>Soy un boton para comenzar el quiz</StyledBoton>
+                    <StyledBoton onClick={iniciar}>Soy un boton para salir el quiz</StyledBoton>
                 </StyledBtnDiv>
             }
         </StyledInfo>
