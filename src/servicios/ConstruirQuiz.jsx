@@ -1,12 +1,12 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import { Navigate, useParams } from 'react-router';
 import { Quiz } from '../paginas/Quiz/Quiz';
 import { bancoTemas } from '../scripts/bancoTemas';
 import { caracteristicasQuiz } from '../scripts/caracteristicasQuiz';
-import { arregloSVG } from '../scripts/arregloSVG.js';
 
 export function ConstruirQuiz () {
     const { tema, id } = useParams();
+    const [datos, setDatos] = useState([]);
 
     /*
         Tenemos de parametros el tema y el id del quiz
@@ -16,6 +16,12 @@ export function ConstruirQuiz () {
            tambien seran de forma aleatoria (se simulara por el momento).
 
     */
+
+    useEffect(() => {
+        import(`../scripts/${tema}/arregloSVG.js`).then(modulo => {
+            setDatos(modulo.default);
+        });
+    }, []);
 
     const objTema = bancoTemas.find(elemento => elemento.nombreRuta === tema);
     let objQuiz;
@@ -27,13 +33,18 @@ export function ConstruirQuiz () {
         if ((typeof quiz) !== 'undefined') {
             objQuiz = caracteristicasQuiz.find(elemento => elemento.id === quiz);
             bandera = true;
+            if (datos.length === 0) {
+                return <p>cargando...</p>;
+            }
         }
     }
 
     return (
         <div>
             {
-                bandera ? <Quiz objTema={objTema} objQuiz ={objQuiz} arreglo = {arregloSVG} /> : <Navigate to={'*'} />
+                bandera
+                    ? <Quiz objTema={objTema} objQuiz ={objQuiz} arreglo = {datos}/>
+                    : <Navigate to={'*'} />
             }
 
         </div>

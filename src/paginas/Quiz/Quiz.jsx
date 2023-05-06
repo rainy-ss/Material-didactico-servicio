@@ -10,24 +10,29 @@ export function Quiz ({ objTema, objQuiz, arreglo = [] }) {
     const [isFinished, setIsFinished] = useState(false);
     const [showInfo, setShowInfo] = useState();
     const [tiempoFinal, setTiempoFinal] = useState(0);
+    const [numeroPregunta, setNumeroPregunta] = useState(0);
 
     const informacion = <Informacion
         iniciar = {iniciar}
         isStarted = {isStarted}
         mostrar = {mostrar}
     />;
+
     /*
 
         BarraSuperior:
             1.Nombre del tema
             2.Tipo de quiz
+
         Panel:
             1.Arreglo de preguntas
+
         BarraInferior:
             1.Longitud del arreglo
             2.Tipo de quiz
             3.Informacion
     */
+
     function iniciar () {
         setIsStarted(prev => !prev);
     }
@@ -43,12 +48,16 @@ export function Quiz ({ objTema, objQuiz, arreglo = [] }) {
     function determinarTiempo (tiempo) {
         setIsFinished(tiempo);
     }
+    function actualizarPregunta () {
+        setNumeroPregunta(prev => prev + 1);
+    }
 
     return (
         <StyledQuiz>
 
             <BarraSuperior
                 nombre = {objTema.nombre}
+                numeroPregunta = {numeroPregunta + 1}
                 maxPreguntas = {objQuiz.maxPreguntas}
 
             />
@@ -61,7 +70,11 @@ export function Quiz ({ objTema, objQuiz, arreglo = [] }) {
                         ? <>
 
                             <Panel
-                                arreglo ={arreglo}
+                                preguntas ={arreglo}
+                                numeroPregunta = {numeroPregunta}
+                                actualizarPregunta = {actualizarPregunta}
+                                terminar = {terminar}
+                                tema = {objTema.nombreRuta}
                             />
                             <BarraInferior
                                 terminar = {terminar}
