@@ -4,6 +4,7 @@ import { BarraSuperior } from '../../componentes/BarraSuperior.jsx';
 import { Panel } from '../../componentes/Panel.jsx';
 import { BarraInferior } from '../../componentes/BarraInferior.jsx';
 import { Informacion } from '../../componentes/Informacion.jsx';
+import { theme } from '../../theme.js';
 
 export function Quiz ({ objTema, objQuiz, arreglo = [] }) {
     const [isStarted, setIsStarted] = useState(false);
@@ -53,7 +54,7 @@ export function Quiz ({ objTema, objQuiz, arreglo = [] }) {
     }
 
     return (
-        <StyledQuiz>
+        <StyledQuiz variant = {theme.palette.Quiz.background}>
 
             <BarraSuperior
                 nombre = {objTema.nombre}
@@ -95,7 +96,7 @@ export function Quiz ({ objTema, objQuiz, arreglo = [] }) {
 }
 
 const StyledQuiz = styled.div`
-    background-color: #95998c;
+    background-color: ${props => props.variant};
     width: 100vw;
     display: flex;
     flex-direction: column;

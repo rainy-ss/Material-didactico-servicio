@@ -25,7 +25,7 @@ export const theme = {
             busquedaFocus: '#2d3449'
         },
         Quiz: {
-            background: '#5e5e61',
+            background: '#ECF2FF',
             questBackground: '#46C2CB',
             optionBackground: '#f2f7a1',
             optionHoverBackground: '#f3e281',
@@ -39,6 +39,10 @@ export const theme = {
                 background: '#3a3634',
                 textColor: '#ffffff',
                 textBackground: '#635e5b'
+            },
+            Question: {
+                background: '#f0c2c2',
+                border: '#E76161'
             }
         }
     }

@@ -1,6 +1,9 @@
 import React from 'react';
 import styled from 'styled-components';
 import { HiXMark } from 'react-icons/hi2';
+import Flechas from '../imagenes/arrow_keys_fa.svg';
+import Touch from '../imagenes/9081044_hand_click_icon.svg';
+import Click from '../imagenes/9080515_click_icon.svg';
 import { theme } from '../theme.js';
 
 export function Informacion ({ iniciar, isStarted, mostrar }) {
@@ -9,12 +12,34 @@ export function Informacion ({ iniciar, isStarted, mostrar }) {
      */
     return (
         <StyledInfo>
-            <StyledIcon>
-                <HiXMark onClick={mostrar}/>
-            </StyledIcon>
+            {
+                isStarted &&
+                    <StyledIcon>
+                        <HiXMark onClick={mostrar} />
+                    </StyledIcon>
+            }
             <StyledContent>
-                <p>Soy una descripción sobre el quiz a realizar y sus reglas</p>
-                <p>Soy controles jeje</p>
+                <StyledDescription>
+                    <h2>Información</h2>
+                    <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Officiis, quidem nostrum? Accusantium ipsam sed a maiores delectus libero, eaque nihil! Necessitatibus quidem nostrum ad obcaecati accusamus ullam ab! Eveniet ipsam hic error voluptate explicabo, numquam molestiae voluptates repudiandae debitis dolore provident, deserunt, rerum autem ipsum rem animi voluptas ducimus fuga?</p>
+                </StyledDescription>
+                <StyledControls>
+                    <h2>Controles</h2>
+                    <ul className='lista-controles'>
+                        <li>
+                            <img className="icons" src={Click} />
+                            <p>Click</p>
+                        </li>
+                        <li>
+                            <img className="icons" src={Touch} />
+                            <p>Tocar</p>
+                        </li>
+                        <li>
+                            <img className="icons" src={Flechas} />
+                            <p>Teclado</p>
+                        </li>
+                    </ul>
+                </StyledControls>
             </StyledContent>
             {
                 !isStarted &&
@@ -47,6 +72,19 @@ const StyledInfo = styled.div`
     /* padding: 10px; */
     /* overflow: hidden; */
     
+    @media screen and (max-width: 600px) {
+        width: 90vw;
+        max-height: 100vh;
+        height: 95vh;
+    }
+
+    @media screen and (orientation:landscape) and (max-height: 500px),
+    (min-width: 600px) and (max-width: 800px){
+        max-height: 100vh;
+        height: 90vh;
+        width: 95vw;
+        opacity: 0.9;
+    }
 
 
 `;
@@ -56,12 +94,32 @@ const StyledContent = styled.div`
     flex: 1;
     max-height: 75vh;
     display: flex;
-    align-items: center;
-    justify-content: space-around;
+    justify-content: space-between;
     overflow: hidden;
 
-    @media screen and (max-width: 768px) {
+    @media screen and (max-width: 600px) {
+        max-height: 90%;
         flex-direction: column;
+
+        & p{
+            font-size: 16px;
+            margin: 0;
+        }
+    }
+
+    @media screen and (orientation:landscape) and (max-height: 500px),
+    (min-width: 600px) and (max-width: 800px){
+        max-height: 100%;
+        & h2{
+            margin-top: 5px;
+            margin-bottom: 10px; 
+            font-size: 1.5rem;
+        }
+
+        & p{
+            margin: 0;
+            font-size: 16px;
+        }
     }
     
 `;
@@ -72,11 +130,14 @@ const StyledBtnDiv = styled.div`
     display: flex;
     justify-content: space-evenly;
     align-items: center;
+
+
 `;
 
 const StyledBoton = styled.button`
 
-border-radius: 8px;
+    border-radius: 8px;
+    min-width: 20%;
     border: 1px solid transparent;
     padding: 0.6em 1.2em;
     font-size: 1em;
@@ -117,4 +178,129 @@ const StyledIcon = styled.div`
     font-size: 5vh;
     padding: 0;
     cursor: pointer;
+
+    @media screen and (orientation:landscape) and (max-height: 500px),
+    (min-width: 600px) and (max-width: 800px){
+        right: 5px;
+        top: 5px;
+        height: 5vh;
+        width: 5vh;
+    }
+`;
+
+const StyledDescription = styled.div`
+    background-color: coral;
+    text-align: justify;
+    min-height: 100%;
+    width: 60%;
+    padding: 10px 10px 5px 20px;
+
+    @media screen and (max-width: 600px) {
+        width: 100%;
+        min-height: 70%;
+
+        & h2{
+            text-align: center;
+            margin-bottom: 10px;
+            font-size: 26px;
+        }
+    }
+
+    @media screen and (orientation:landscape) and (max-height: 500px),
+    (min-width: 600px) and (max-width: 800px){
+        width: 70%;
+
+    }
+
+`;
+
+const StyledControls = styled.div`
+    text-align: center;
+    background-color: tomato;
+    display: flex;
+    flex-direction: column;
+    border-left:1px solid #65a14d;
+    width: 40%;
+    padding-left: 10px;
+    min-height: 100%;
+    padding: 10px 10px 5px 20px;
+
+    .lista-controles{
+        height: 100%;
+        width: 100%;
+        display: flex;
+        flex-direction: column;
+        justify-content: space-around;
+        overflow: hidden;
+        margin: 0;
+        padding: 0;
+    }
+
+    .lista-controles li{
+        border: 2px solid #83ce65;
+        border-radius: 20px;
+        display: flex;
+        justify-content: space-around;
+        align-items: center;
+        list-style: none;
+        height: 30%;
+        background-color: #eeffe7;
+        font-size: 30px;
+    }
+
+    .icons{
+        max-height: 90px;
+        max-width: 90px;
+    }
+
+
+    @media screen and (max-width: 600px) {
+        width: 100%;
+        min-height: 30%;
+
+        & h2{
+            text-align: center;
+            margin: 0;
+            margin-bottom: 10px;
+            font-size: 26px;
+
+        }
+
+        .lista-controles{
+            flex-direction: row;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .lista-controles li{
+            width: 30%;
+            height: 90%;
+            flex-direction: column;
+            font-size: 20px;
+            padding: 5px;
+        }
+
+        .icons{
+            height: 100%;
+            width: 60%;
+        }
+
+    }
+
+    @media screen and (orientation:landscape) and (max-height: 500px),
+    (min-width: 600px) and (max-width: 800px){
+        width: 30%;
+
+        .lista-controles li{
+            font-size: 20px;
+        }
+        
+        .icons{
+            max-height: 100%;
+            max-width: 30%;
+        }
+
+    }
+
+
 `;

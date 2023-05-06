@@ -75,12 +75,25 @@ export function Panel ({ preguntas = [], numeroPregunta, actualizarPregunta, ter
 }
 
 const StyledDiv = styled.div`
-    width: 80%;
-    /* No tendrá un display flex ni nada de eso lol */
-    display: flex;
-    background-color: #557ea7;
-    align-items: center;
-    justify-content: center;
+    padding: 10px;
+    width: 80vw;
+    background-color: #e1e4e4;
+    border-radius: 30px;
+    min-height: 80vh;
     height: 100%;
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    row-gap: 20px;
+    grid-template-rows: repeat(3, 1fr);
+    margin: 0 20vh;
+    justify-content: space-evenly;
+    justify-items: center;
+    align-content: space-evenly;
+    align-items: center;
+
+    .imagen{
+        max-height: 10px;
+    }
+
     
 `;

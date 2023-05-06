@@ -32,14 +32,36 @@ export function Respuesta ({ id, icon, tema, objRespuesta, manejaRespuesta }) {
 }
 
 const StyledDiv = styled.div`
-    background-color: aquamarine;
+    /* background-color: aquamarine; */
 
+    &.contenedor-1{
+        grid-column: 2;
+        grid-row: 1;
+        background-color: #7c000a;
+    }
+
+    &.contenedor-2{
+        grid-column: 3;
+        grid-row: 2;
+    }
+
+    &.contenedor-3{
+        grid-column: 2;
+        grid-row: 3;
+    }
+
+    &.contenedor-4{
+        grid-column: 1;
+        grid-row: 2;
+    }
   
 `;
 
 const StyledButtonRespuesta = styled.button`
-    background-color: violet;
+    background-color: transparent;
+    
     .imagen{
         width: 100%;
+        max-height: 10px;
     }
 `;
