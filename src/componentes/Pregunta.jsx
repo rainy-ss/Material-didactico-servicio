@@ -31,13 +31,47 @@ export function Pregunta ({ id, tema, link }) {
 const StyledDiv = styled.div`
     grid-column: 2;
     grid-row: 2;
-    padding: 20px;
+    padding: 10px;
     width: 100%;
+    height: 100%;
     background-color:  ${props => props.variant.backgroundColor};
     border: 2px solid ${props => props.variant.borderColor};
     border-radius: 10px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    overflow: hidden;
     
 
+    & .imagen{
+        max-width: 100%;
+        object-fit: cover;
+    }
 
+    @media screen and (orientation:landscape) and (max-height: 550px) {
+        grid-column: 2;
+        grid-row: 2/span 2;
+        width: 90%;
+
+    }
+
+    @media screen and (min-height: 1000px) and (max-width: 1300px){
+        height: 70%;
+        padding: 0;
+
+        & .imagen{
+            min-height: 100%;
+            object-fit: cover;
+            background-color: #6e6868;
+        }
+
+    }
+
+    @media screen and (max-width: 760px) {
+        width: 100%;
+        padding: 0;
+
+        
+    }
     
 `;

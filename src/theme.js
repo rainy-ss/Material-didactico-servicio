@@ -36,14 +36,29 @@ export const theme = {
                 background: '#151515'
             },
             BottomBar: {
-                background: '#3a3634',
+                background: 'transparent',
                 textColor: '#ffffff',
-                textBackground: '#635e5b'
+                textBackground: '#635e5b',
+                Buttons: {
+                    infoBackground: '#f0f0f0',
+                    infoColor: '#239e5a',
+                    infoBorder: '#239e5a',
+                    exitBackground: '#f0f0f0',
+                    exitColor: '#e74c31',
+                    exitBorder: '#e74c31'
+                }
             },
             Question: {
                 background: '#f0c2c2',
                 border: '#E76161'
+            },
+            Answers: {
+                background: '#e5ecfa',
+                border: '#ccbce0',
+                hoverBackground: '#7d69ad',
+                hoverBorder: '#4a367a'
             }
+
         }
     }
 };

@@ -62,6 +62,7 @@ const StyledTempo = styled.div`
     background-color: ${props => props.variant.Tempo.backgroundColor};
     color: ${props => props.variant.Tempo.color};
     max-width: 150px;
+    width: 30%;
     height: 100%;
     display: flex;
     align-items: center;
@@ -69,5 +70,12 @@ const StyledTempo = styled.div`
     padding: 0 10px;
     border-radius: 5px;
     overflow: hidden;
+    
+
+    
+    & p{
+        margin: 0;
+        font-size: 1.5em;
+    }
     
 `;

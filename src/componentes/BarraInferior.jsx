@@ -11,9 +11,23 @@ export function BarraInferior ({ terminar, temporizador, showInfo, informacion, 
         setShowExit(prev => !prev);
     }
 
+    const variantButtonInfo = {
+        backgroundColor: theme.palette.Quiz.BottomBar.Buttons.infoBackground,
+        color: theme.palette.Quiz.BottomBar.Buttons.infoColor,
+        border: theme.palette.Quiz.BottomBar.Buttons.infoBorder
+
+    };
+
+    const variantButtonExit = {
+        backgroundColor: theme.palette.Quiz.BottomBar.Buttons.exitBackground,
+        color: theme.palette.Quiz.BottomBar.Buttons.exitColor,
+        border: theme.palette.Quiz.BottomBar.Buttons.exitBorder
+
+    };
+
     return (
         <StyledDiv variant = {theme.palette.Quiz.BottomBar.background}>
-            <StyledButton variant = {'info'} onClick={mostrar}>informacion</StyledButton>
+            <StyledButton variant = {variantButtonInfo} onClick={mostrar}>informacion</StyledButton>
             { showInfo && informacion }
             {showExit && <AlertaSalir mostrarAlerta = {mostrarAlerta}/>}
             <Temporizador
@@ -22,41 +36,50 @@ export function BarraInferior ({ terminar, temporizador, showInfo, informacion, 
                 isFinished = {isFinished}
                 tiempoFinal = {tiempoFinal}
             />
-            <StyledButton variant = {'exit'} onClick={mostrarAlerta}>rips</StyledButton>
+            <StyledButton variant = {variantButtonExit} onClick={mostrarAlerta}>rips</StyledButton>
         </StyledDiv>
     );
 }
 
 const StyledDiv = styled.div`
     width: 100%;
-    max-height: 8vh;
+    height: 8vh;
     display: flex;
     background-color: ${props => props.variant};
     align-items: center;
     justify-content: space-between;
     padding: 5px 20px;
     overflow: hidden;
+
+    @media screen and (orientation:landscape) and (max-height: 550px) {
+        justify-content: center;
+        gap: 10%;
+        padding: 0;
+    }
+
 `;
 
 const StyledButton = styled.button`
-
-    min-height: 30px;
-    padding: 10px 0px;
-    width: 10vw;
+    padding: 0 10px;
+    min-width: 10vw;
     font-size: 1rem;
     cursor: pointer;
     border-radius: 10px;
-    background-color: transparent;
-    border: transparent;
     font-weight: bold;
+    height: 100%;
+    line-height: 100%;
 
-    color: ${props => props.variant === 'exit' ? '#e74c31' : '#239e5a'};
-    border: 1px solid ${props => props.variant === 'exit' ? '#e74c31' : '#239e5a'};
+    color: ${props => props.variant.color};
+    border: 1px solid ${props => props.variant.border};
 
     &:hover{
-        background-color:${props => props.variant === 'exit' ? '#e74c31' : '#239e5a'};
-        color:rgb(255, 255, 255);
+        background-color: ${props => props.variant.border};
+        color: ${props => props.variant.backgroundColor};
         border: 1px solid transparent;
     }
 
+    @media screen and (max-width: 760px) {
+        width: 30%;
+        overflow: hidden;
+    }
 `;

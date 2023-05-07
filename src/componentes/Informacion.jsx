@@ -163,6 +163,17 @@ const StyledBoton = styled.button`
         align-items: center;
         width: 40%;
     }
+
+    @media screen and (orientation:landscape) and (max-height: 500px),
+    (min-width: 600px) and (max-width: 800px){
+        height: 80%; 
+        font-size: 80%;
+        overflow: hidden;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        
+    }
 `;
 
 const StyledIcon = styled.div`

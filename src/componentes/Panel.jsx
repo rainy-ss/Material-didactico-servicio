@@ -55,15 +55,15 @@ export function Panel ({ preguntas = [], numeroPregunta, actualizarPregunta, ter
 
                 {
                     preguntas[numeroPregunta].respuestas.map((respuestaActual, index) => (
-                        <div key={respuestaActual.id} >
-                            <Respuesta
-                                id = {index + 1}
-                                tema = {tema}
-                                objRespuesta = {respuestaActual}
-                                manejaRespuesta = {manejaRespuesta}
-                                icon={iconos[index]}
-                            />
-                        </div>
+
+                        <Respuesta
+                            key={respuestaActual.id}
+                            id = {index + 1}
+                            tema = {tema}
+                            objRespuesta = {respuestaActual}
+                            manejaRespuesta = {manejaRespuesta}
+                            icon={iconos[index]}
+                        />
 
                     ))
 
@@ -76,14 +76,12 @@ export function Panel ({ preguntas = [], numeroPregunta, actualizarPregunta, ter
 
 const StyledDiv = styled.div`
     padding: 10px;
-    width: 80vw;
-    background-color: #e1e4e4;
-    border-radius: 30px;
-    min-height: 80vh;
-    height: 100%;
+    width: 85vw;
+    height: 80vh;
     display: grid;
     grid-template-columns: repeat(3, 1fr);
     row-gap: 20px;
+    column-gap: 10px;
     grid-template-rows: repeat(3, 1fr);
     margin: 0 20vh;
     justify-content: space-evenly;
@@ -91,9 +89,31 @@ const StyledDiv = styled.div`
     align-content: space-evenly;
     align-items: center;
 
-    .imagen{
-        max-height: 10px;
+    @media screen and (orientation:landscape) and (max-height: 550px) {
+        min-height: 70vh;
+        width: 100vw;
+        margin: 0;
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        grid-gap: 20px;
+        grid-template-rows: repeat(4, 1fr);
+
     }
+
+    @media screen and (max-width: 1000px),
+    (min-height: 1000px) and (max-width: 1300px){
+        width: 100vw;
+        padding: 5px;
+        margin: 0;
+
+    }
+
+    @media screen and (max-width: 760px) {
+        display: flex;
+        flex-direction: column;
+        margin: 5px;
+    }
+
 
     
 `;
