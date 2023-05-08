@@ -59,6 +59,29 @@ export const theme = {
                 hoverBorder: '#4a367a'
             }
 
+        },
+        Results: {
+            background: '#f8ffd8',
+            color: '#434f57',
+            btnsDivColor: '#272422',
+            Calificacion: {
+                background: '#CFAA7A',
+                color: '#ffffff'
+            },
+            BotonesOpciones: {
+                background: '#897be2',
+                border: 'slateblue',
+                color: '#272422',
+                borderRadius: '10px'
+            },
+            BotonesNavegacion: {
+                background: '#f3b0b0',
+                border: 'salmon',
+                color: '#272422',
+                borderRadius: '25px'
+            }
+
         }
+
     }
 };

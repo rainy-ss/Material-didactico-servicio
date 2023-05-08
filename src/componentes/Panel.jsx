@@ -95,7 +95,8 @@ const StyledDiv = styled.div`
         margin: 0;
         display: grid;
         grid-template-columns: repeat(3, 1fr);
-        grid-gap: 20px;
+        grid-row-gap: 20px;
+        grid-column-gap: 0;
         grid-template-rows: repeat(4, 1fr);
 
     }
@@ -108,7 +109,7 @@ const StyledDiv = styled.div`
 
     }
 
-    @media screen and (max-width: 760px) {
+    @media screen and (max-width: 760px) and (min-height: 550px){
         display: flex;
         flex-direction: column;
         margin: 5px;

@@ -6,6 +6,7 @@ export function Temporizador ({ temporizador, terminar, isFinished, tiempoFinal 
     const [secondsLeft, setSecondsLeft] = useState(0);
 
     const secondsLeftRef = useRef(secondsLeft);
+    const addSubst = (temporizador > 0 ? -1 : 1);
 
     function initTimer () {
         const tiempoInicial = temporizador;
@@ -14,13 +15,8 @@ export function Temporizador ({ temporizador, terminar, isFinished, tiempoFinal 
     }
 
     function tick () {
-        if (temporizador > 0) {
-            secondsLeftRef.current--;
-            setSecondsLeft(secondsLeftRef.current);
-        } else {
-            secondsLeftRef.current++;
-            setSecondsLeft(secondsLeftRef.current);
-        }
+        secondsLeftRef.current += 1 * addSubst;
+        setSecondsLeft(secondsLeftRef.current);
     }
 
     useEffect(() => {

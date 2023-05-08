@@ -53,7 +53,7 @@ export function Informacion ({ iniciar, isStarted, mostrar }) {
 }
 
 const StyledInfo = styled.div`
-    background-color: #c7824a;
+    background-color: #c95a00;
     border-radius: 25px;
     z-index: 10;
     width: 70vw;
@@ -72,14 +72,14 @@ const StyledInfo = styled.div`
     /* padding: 10px; */
     /* overflow: hidden; */
     
-    @media screen and (max-width: 600px) {
+    @media screen and (max-width: 850px) {
         width: 90vw;
         max-height: 100vh;
         height: 95vh;
     }
 
     @media screen and (orientation:landscape) and (max-height: 500px),
-    (min-width: 600px) and (max-width: 800px){
+    (min-width: 850px) and (min-height: 1000px){
         max-height: 100vh;
         height: 90vh;
         width: 95vw;
@@ -90,15 +90,15 @@ const StyledInfo = styled.div`
 `;
 
 const StyledContent = styled.div`
-    background-color: #b3b143;
+    background-color: #0231cc;
     flex: 1;
-    max-height: 75vh;
+    max-height: 100%;
     display: flex;
     justify-content: space-between;
     overflow: hidden;
 
     @media screen and (max-width: 600px) {
-        max-height: 90%;
+        max-height: 100%;
         flex-direction: column;
 
         & p{
@@ -108,7 +108,7 @@ const StyledContent = styled.div`
     }
 
     @media screen and (orientation:landscape) and (max-height: 500px),
-    (min-width: 600px) and (max-width: 800px){
+    (min-width: 760px) and (min-height: 1000px){
         max-height: 100%;
         & h2{
             margin-top: 5px;
@@ -154,18 +154,19 @@ const StyledBoton = styled.button`
         background-color: ${theme.palette.temas.buttonHover};
     }
 
-    @media screen and (max-width: 768px) {
+    @media screen and (max-width: 900px) {
         height: 80%; 
         overflow: hidden;
-        font-size: 60%;
+        font-size: 90%;
         display: flex;
         justify-content: center;
         align-items: center;
         width: 40%;
+        padding: 0;
     }
 
     @media screen and (orientation:landscape) and (max-height: 500px),
-    (min-width: 600px) and (max-width: 800px){
+    (min-width: 850px) and (min-height: 1000px){
         height: 80%; 
         font-size: 80%;
         overflow: hidden;
@@ -178,8 +179,8 @@ const StyledBoton = styled.button`
 
 const StyledIcon = styled.div`
     background-color: #d61f6b;
-    height: 7vh;
-    width: 7vh;
+    height: 5vh;
+    width: 5vh;
     position: absolute;
     right: 10px;
     top: 10px;
@@ -191,7 +192,7 @@ const StyledIcon = styled.div`
     cursor: pointer;
 
     @media screen and (orientation:landscape) and (max-height: 500px),
-    (min-width: 600px) and (max-width: 800px){
+    (min-width: 760px) and (min-height: 1000px){
         right: 5px;
         top: 5px;
         height: 5vh;
@@ -206,7 +207,7 @@ const StyledDescription = styled.div`
     width: 60%;
     padding: 10px 10px 5px 20px;
 
-    @media screen and (max-width: 600px) {
+    @media screen and (max-width: 600px), (min-height: 500px){
         width: 100%;
         min-height: 70%;
 
@@ -218,7 +219,7 @@ const StyledDescription = styled.div`
     }
 
     @media screen and (orientation:landscape) and (max-height: 500px),
-    (min-width: 600px) and (max-width: 800px){
+    (min-width: 760px) and (min-height: 1000px){
         width: 70%;
 
     }
@@ -231,7 +232,7 @@ const StyledControls = styled.div`
     display: flex;
     flex-direction: column;
     border-left:1px solid #65a14d;
-    width: 40%;
+    width: 50%;
     padding-left: 10px;
     min-height: 100%;
     padding: 10px 10px 5px 20px;
@@ -256,19 +257,22 @@ const StyledControls = styled.div`
         list-style: none;
         height: 30%;
         background-color: #eeffe7;
-        font-size: 30px;
+        font-size: 1.6rem;
     }
 
     .icons{
         max-height: 90px;
         max-width: 90px;
+        width: 30%;
     }
+    
 
 
-    @media screen and (max-width: 600px) {
+    @media screen and (max-width: 600px) and (min-height: 500px) {
         width: 100%;
         min-height: 30%;
 
+        
         & h2{
             text-align: center;
             margin: 0;
@@ -293,15 +297,16 @@ const StyledControls = styled.div`
 
         .icons{
             height: 100%;
-            width: 60%;
+            width: 100px;
+            
         }
 
     }
 
-    @media screen and (orientation:landscape) and (max-height: 500px),
-    (min-width: 600px) and (max-width: 800px){
+    @media screen and (orientation:landscape) and (max-height: 500px){
         width: 30%;
 
+        
         .lista-controles li{
             font-size: 20px;
         }
@@ -309,6 +314,25 @@ const StyledControls = styled.div`
         .icons{
             max-height: 100%;
             max-width: 30%;
+        }
+
+    }
+
+    @media screen and (min-width: 760px) and (min-height: 1000px){
+        width: 30%;
+        
+
+        .lista-controles li{
+            flex-direction: column;
+        }
+
+        .lista-controles p{
+            font-size: 2rem;
+        }
+        
+        .icons{
+            max-height: 100%;
+            max-width: 70%;
         }
 
     }

@@ -4,6 +4,7 @@ import { BarraSuperior } from '../../componentes/BarraSuperior.jsx';
 import { Panel } from '../../componentes/Panel.jsx';
 import { BarraInferior } from '../../componentes/BarraInferior.jsx';
 import { Informacion } from '../../componentes/Informacion.jsx';
+import { Resultados } from '../../componentes/Resultados.jsx';
 import { theme } from '../../theme.js';
 
 export function Quiz ({ objTema, objQuiz, arreglo = [] }) {
@@ -65,8 +66,13 @@ export function Quiz ({ objTema, objQuiz, arreglo = [] }) {
 
             {
                 isFinished
-                    ? <p>resultados</p>
-
+                    ? <>
+                        <Resultados
+                            tiempofinal = {tiempoFinal}
+                            preguntas ={arreglo}
+                            temporizador = {objQuiz.temporizador}
+                        />
+                    </>
                     : isStarted
                         ? <>
 

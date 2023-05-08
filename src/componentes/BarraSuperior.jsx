@@ -40,7 +40,7 @@ const StyledDiv = styled.div`
         
     }
 
-    @media screen and (max-width: 768px) {
+    @media screen and (max-width: 760px) and (min-height: 550px){
         padding: 5px 10px;
     }
     
@@ -63,14 +63,13 @@ const StyledContador = styled.div`
         line-height: 100%;
         margin: 0;
         font-size: 2.5rem;
-        height: 100%;
+        height: auto;
     }
     
-    @media screen and (max-width: 768px) {
+    @media screen and (max-width: 760px) and (min-height: 550px){
         width: 20%;
 
         & p{
-            height: auto;
             font-size: 1.7rem;
         }
     }
@@ -78,8 +77,19 @@ const StyledContador = styled.div`
     @media screen and (orientation:landscape) and (max-height: 550px) {
         width: 10%;
         height: 90%;
-        font-size: 1.7rem;
-        
+
+        & p{
+            height: auto;
+            font-size: 1.7rem;
+        }   
+    }
+
+    @media screen and (min-width: 760px) and (min-height: 1000px){
+        width: 30%;
+        & p{
+            height: auto;
+            font-size: 3rem;
+        }  
     }
     
 `;

@@ -53,7 +53,7 @@ const StyledDiv = styled.div`
 
     @media screen and (orientation:landscape) and (max-height: 550px) {
         justify-content: center;
-        gap: 10%;
+        gap: 20px;
         padding: 0;
     }
 
@@ -78,8 +78,14 @@ const StyledButton = styled.button`
         border: 1px solid transparent;
     }
 
-    @media screen and (max-width: 760px) {
-        width: 30%;
+
+    @media screen and (max-width: 760px) and (min-height: 550px){
+        min-width: 30%;
         overflow: hidden;
+    }
+
+    @media screen and (orientation:landscape) and (max-height: 500px),
+    (min-width: 760px) and (min-height: 1000px){
+        width: 20vw;
     }
 `;

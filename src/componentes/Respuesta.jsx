@@ -81,6 +81,7 @@ const StyledDiv = styled.div`
     
     @media screen and (orientation:landscape) and (max-height: 550px) {
         height: 100%;
+        width: 90%;
 
         &.contenedor-1{
             grid-column: 1;
@@ -109,7 +110,7 @@ const StyledDiv = styled.div`
         }
     }
 
-    @media screen and (max-width: 760px) {
+    @media screen and (max-width: 760px) and (min-height: 550px){
         width: 70%;
     }
 
