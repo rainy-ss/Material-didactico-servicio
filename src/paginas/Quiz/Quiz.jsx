@@ -6,11 +6,12 @@ import { BarraInferior } from '../../componentes/BarraInferior.jsx';
 import { Informacion } from '../../componentes/Informacion.jsx';
 import { Resultados } from '../../componentes/Resultados.jsx';
 import { theme } from '../../theme.js';
+import { Temporizador } from '../../componentes/Temporizador.jsx';
 
 export function Quiz ({ objTema, objQuiz, arreglo = [] }) {
     const [isStarted, setIsStarted] = useState(false);
     const [isFinished, setIsFinished] = useState(false);
-    const [showInfo, setShowInfo] = useState();
+    const [showInfo, setShowInfo] = useState(false);
     const [tiempoFinal, setTiempoFinal] = useState(0);
     const [numeroPregunta, setNumeroPregunta] = useState(0);
 
@@ -20,20 +21,12 @@ export function Quiz ({ objTema, objQuiz, arreglo = [] }) {
         mostrar = {mostrar}
     />;
 
-    /*
-
-        BarraSuperior:
-            1.Nombre del tema
-            2.Tipo de quiz
-
-        Panel:
-            1.Arreglo de preguntas
-
-        BarraInferior:
-            1.Longitud del arreglo
-            2.Tipo de quiz
-            3.Informacion
-    */
+    const temporizador = <Temporizador
+        temporizador = {objQuiz.temporizador}
+        isStarted = {isStarted}
+        isFinished = {isFinished}
+        tiempoFinal = {determinarTiempo}
+    />;
 
     function iniciar () {
         setIsStarted(prev => !prev);
@@ -48,7 +41,7 @@ export function Quiz ({ objTema, objQuiz, arreglo = [] }) {
     }
 
     function determinarTiempo (tiempo) {
-        setIsFinished(tiempo);
+        setTiempoFinal(tiempo);
     }
     function actualizarPregunta () {
         setNumeroPregunta(prev => prev + 1);
@@ -59,8 +52,7 @@ export function Quiz ({ objTema, objQuiz, arreglo = [] }) {
 
             <BarraSuperior
                 nombre = {objTema.nombre}
-                numeroPregunta = {numeroPregunta + 1}
-                maxPreguntas = {objQuiz.maxPreguntas}
+                temporizador = {temporizador}
 
             />
 
@@ -68,7 +60,7 @@ export function Quiz ({ objTema, objQuiz, arreglo = [] }) {
                 isFinished
                     ? <>
                         <Resultados
-                            tiempofinal = {tiempoFinal}
+                            tiempoFinal = {tiempoFinal}
                             preguntas ={arreglo}
                             temporizador = {objQuiz.temporizador}
                         />
@@ -84,13 +76,11 @@ export function Quiz ({ objTema, objQuiz, arreglo = [] }) {
                                 tema = {objTema.nombreRuta}
                             />
                             <BarraInferior
-                                terminar = {terminar}
-                                temporizador = {objQuiz.temporizador}
                                 informacion = {informacion}
                                 showInfo = {showInfo}
                                 mostrar = {mostrar}
-                                isFinished = {isFinished}
-                                tiempoFinal = {determinarTiempo}
+                                numeroPregunta = {numeroPregunta + 1}
+                                maxPreguntas = {objQuiz.maxPreguntas}
                             />
                         </>
 

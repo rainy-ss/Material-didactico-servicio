@@ -2,11 +2,15 @@ import React, { useState, useRef, useEffect } from 'react';
 import styled from 'styled-components';
 import { theme } from '../theme.js';
 
-export function Temporizador ({ temporizador, terminar, isFinished, tiempoFinal }) {
+export function Temporizador ({ temporizador, isStarted, isFinished = false, tiempoFinal }) {
     const [secondsLeft, setSecondsLeft] = useState(0);
 
     const secondsLeftRef = useRef(secondsLeft);
     const addSubst = (temporizador > 0 ? -1 : 1);
+
+    const minutes = Math.floor(secondsLeft / 60);
+    let seconds = secondsLeft % 60;
+    if (seconds < 10) seconds = '0' + seconds;
 
     function initTimer () {
         const tiempoInicial = temporizador;
@@ -20,39 +24,45 @@ export function Temporizador ({ temporizador, terminar, isFinished, tiempoFinal 
     }
 
     useEffect(() => {
+        let interval;
         initTimer();
+        if (isStarted) {
+            interval = setInterval(() => {
+                if (temporizador > 0 && secondsLeftRef.current === 0) {
+                    clearInterval(interval);
+                    tiempoFinal(secondsLeft);
+                }
+                if (isFinished) {
+                    clearInterval(interval);
+                    tiempoFinal(secondsLeft);
+                }
 
-        const interval = setInterval(() => {
-            if (temporizador > 0 && secondsLeftRef.current === 0) {
-                return terminar(true);
-            }
-            if (temporizador === 0 && isFinished) {
-                return tiempoFinal(secondsLeftRef.current);
-            }
-
-            tick();
-        }, 1000);
-
-        return () => clearInterval(interval);
-    }, []);
-
-    const minutes = Math.floor(secondsLeft / 60);
-    let seconds = secondsLeft % 60;
-    if (seconds < 10) seconds = '0' + seconds;
-
-    const variantOptions = {
-        Tempo: {
-            backgroundColor: theme.palette.Quiz.BottomBar.textBackground,
-            color: theme.palette.Quiz.BottomBar.textColor
+                tick();
+            }, 1000);
         }
-    };
+    }, [isStarted, isFinished]);
 
     return (
-        <StyledTempo variant = {variantOptions}>
-            <p>{minutes}:{seconds}</p>
-        </StyledTempo>
+        <>
+            {
+                isFinished
+                    ? null
+                    : <StyledTempo variant = {variantOptions}>
+                        <p>{minutes}:{seconds}</p>
+                    </StyledTempo>
+
+            }
+        </>
+
     );
 }
+
+const variantOptions = {
+    Tempo: {
+        backgroundColor: theme.palette.Quiz.BottomBar.textBackground,
+        color: theme.palette.Quiz.BottomBar.textColor
+    }
+};
 
 const StyledTempo = styled.div`
     background-color: ${props => props.variant.Tempo.backgroundColor};

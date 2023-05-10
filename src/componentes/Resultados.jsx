@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import styled from 'styled-components';
 import { Link } from 'react-router-dom';
 import { theme } from '../theme.js';
@@ -7,42 +7,18 @@ import { PanelRespuestas } from './PanelRespuestas.jsx';
 export function Resultados ({ tiempoFinal, preguntas = [], temporizador }) {
     const [showRespuestas, setShowRespuestas] = useState(false);
     const [showVentanaPreguntas, setShowVentanaPreguntas] = useState(0);
+    const [respuestas, setRespuestas] = useState([]);
 
-    const respuestas = localStorage.getItem('respuestas');
+    useEffect(() => {
+        setRespuestas(JSON.parse(localStorage.getItem('respuestas')));
+    }, []);
 
     function mostrarRespuestas () {
         setShowRespuestas(prev => !prev);
     }
 
-    const mainOptions = {
-        backgroundColor: theme.palette.Results.background,
-        color: theme.palette.Results.color
-    };
-
-    const califOptions = {
-        backgroundColor: theme.palette.Results.Calificacion.background,
-        color: theme.palette.Results.Calificacion.color
-    };
-
-    const btnDivOptions = {
-        backgroundColor: theme.palette.Results.btnsDivColor
-    };
-
-    const buttonOptions = {
-        backgroundColor: theme.palette.Results.BotonesOpciones.background,
-        borderColor: theme.palette.Results.BotonesOpciones.border,
-        color: theme.palette.Results.BotonesOpciones.color,
-        borderRadius: theme.palette.Results.BotonesOpciones.borderRadius
-    };
-
-    const buttonOptionsNavigation = {
-        backgroundColor: theme.palette.Results.BotonesNavegacion.background,
-        borderColor: theme.palette.Results.BotonesNavegacion.border,
-        color: theme.palette.Results.BotonesNavegacion.color,
-        borderRadius: theme.palette.Results.BotonesNavegacion.borderRadius
-    };
-
     return (
+
         <StyledDiv variant={mainOptions}>
             {
                 !showRespuestas
@@ -105,6 +81,34 @@ export function Resultados ({ tiempoFinal, preguntas = [], temporizador }) {
         </StyledDiv>
     );
 }
+
+const mainOptions = {
+    backgroundColor: theme.palette.Results.background,
+    color: theme.palette.Results.color
+};
+
+const califOptions = {
+    backgroundColor: theme.palette.Results.Calificacion.background,
+    color: theme.palette.Results.Calificacion.color
+};
+
+const btnDivOptions = {
+    backgroundColor: theme.palette.Results.btnsDivColor
+};
+
+const buttonOptions = {
+    backgroundColor: theme.palette.Results.BotonesOpciones.background,
+    borderColor: theme.palette.Results.BotonesOpciones.border,
+    color: theme.palette.Results.BotonesOpciones.color,
+    borderRadius: theme.palette.Results.BotonesOpciones.borderRadius
+};
+
+const buttonOptionsNavigation = {
+    backgroundColor: theme.palette.Results.BotonesNavegacion.background,
+    borderColor: theme.palette.Results.BotonesNavegacion.border,
+    color: theme.palette.Results.BotonesNavegacion.color,
+    borderRadius: theme.palette.Results.BotonesNavegacion.borderRadius
+};
 
 const StyledDiv = styled.div`
     height: 100%;

@@ -10,6 +10,7 @@ export function Informacion ({ iniciar, isStarted, mostrar }) {
     /*
         Estado para mostrar la ventana
      */
+
     return (
         <StyledInfo>
             {
