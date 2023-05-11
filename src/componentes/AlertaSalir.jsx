@@ -11,46 +11,20 @@ export function AlertaSalir ({ mostrarAlerta }) {
                 <p>Si sales, perderás todo tu progreso.</p>
             </StyledContent>
             <StyledButtonDiv>
-                <StyledBoton onClick={mostrarAlerta}>Regresar al Quiz</StyledBoton>
-                <StyledBoton as={Link} to = {'/temas'}>Salir</StyledBoton>
+                <StyledBoton variant={variantButtonContinue} onClick={mostrarAlerta}>Regresar al Quiz</StyledBoton>
+                <StyledBoton variant={variantButtonExit} as={Link} to = {'/temas'}>Salir</StyledBoton>
             </StyledButtonDiv>
         </StyledAlerta>
     );
 }
 
-const StyledBoton = styled.button`
-    border-radius: 8px;
-    border: 1px solid transparent;
-    padding: 0.6em 1.2em;
-    font-size: 1em;
-    font-weight: 500;
-    font-family: inherit;
-    
-    background-color: ${theme.palette.temas.buttonBackground};
-    border: 1px solid ${theme.palette.temas.buttonBorder};
-    color: ${theme.palette.temas.buttonText};
-    transition: 0.2s ease-in-out;
-
-    cursor: pointer;
-    &:hover {
-        background-color: ${theme.palette.temas.buttonHover};
-    }
-
-    @media screen and (orientation:landscape) and (max-height: 500px),
-    (min-width: 600px) and (max-width: 800px){
-        /* height: 70%; */
-        line-height: 100%;
-    }
-`;
-
 const StyledAlerta = styled.div`
-    background-color: #bacfe2;
-    color: #790a0a;
+    background-color: ${theme.palette.VentanasEmergentes.Alerta.background};
     z-index: 10;
     max-width: 35vw;
+    width: 80%;
     max-height: 35vh;
     position: fixed;
-    opacity: 0.9;
     top: 50%;
     left: 50%;
     -ms-transform: translate(-50%, -50%);
@@ -59,15 +33,19 @@ const StyledAlerta = styled.div`
     transform: translate(-50%, -50%);
     border-radius: 20px;
     display: flex;
-    gap: 30px;
     flex-direction: column;
     justify-content: space-between;
     padding: 20px;
 
+    
+
+
     @media screen and (orientation:landscape) and (max-height: 500px){
-        max-height: 60vh;
-        min-height: 40vh;
-        max-width: 50vw;
+        max-height: 50vh;
+        height: 80%;
+        max-width: 70vw;
+        width: 60%;
+        padding: 10px;
     }
 
     @media screen and (min-width: 760px) and (min-height: 1000px){
@@ -91,10 +69,19 @@ const StyledAlerta = styled.div`
 
 const StyledContent = styled.div`
     
+    height: 100%;
+    flex: 1;
+    & h2{
+        color: ${theme.palette.VentanasEmergentes.Alerta.titulos};
+        border-bottom: 1px solid ${theme.palette.VentanasEmergentes.Alerta.separador};
+        padding-bottom: 5px;
+    }
 
     & p{
+        color: ${theme.palette.VentanasEmergentes.Alerta.texto};
         margin: 0;
-        min-height: 100%;
+        margin: 15px;
+        
     }
 
     @media screen and (orientation:landscape) and (max-height: 500px),
@@ -108,6 +95,49 @@ const StyledContent = styled.div`
 
 const StyledButtonDiv = styled.div`
     display: flex;
-    justify-content: space-evenly;
+    justify-content: space-around;
+    height: 25%;
+    overflow: hidden;
     
 `;
+
+const StyledBoton = styled.button`
+    border-radius: 8px;
+    border: 1px solid transparent;
+    padding: 0.6em 1.2em;
+    font-size: 1em;
+    font-weight: 700;
+    font-family: inherit;
+    
+    background-color: ${props => props.variant.background};
+    border: 1px solid ${props => props.variant.border};
+    color: ${props => props.variant.color};
+    transition: 0.2s ease-in-out;
+    min-width: 30%;
+
+    cursor: pointer;
+    &:hover {
+        border: 1px solid ${props => props.variant.hover};
+        background-color: ${props => props.variant.hover};
+    }
+
+    @media screen and (orientation:landscape) and (max-height: 500px),
+    (min-width: 600px) and (max-width: 800px){
+        /* height: 70%; */
+        line-height: 100%;
+    }
+`;
+
+const variantButtonContinue = {
+    background: theme.palette.VentanasEmergentes.Alerta.Botones.backgroundContinuar,
+    color: theme.palette.VentanasEmergentes.Alerta.Botones.colorContinuar,
+    border: theme.palette.VentanasEmergentes.Alerta.Botones.borderContinuar,
+    hover: theme.palette.VentanasEmergentes.Alerta.Botones.hover
+};
+
+const variantButtonExit = {
+    background: theme.palette.VentanasEmergentes.Alerta.Botones.backgroundSalir,
+    color: theme.palette.VentanasEmergentes.Alerta.Botones.colorSalir,
+    border: theme.palette.VentanasEmergentes.Alerta.Botones.borderSalir,
+    hover: theme.palette.VentanasEmergentes.Alerta.Botones.hover
+};

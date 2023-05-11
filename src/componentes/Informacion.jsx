@@ -12,19 +12,19 @@ export function Informacion ({ iniciar, isStarted, mostrar }) {
      */
 
     return (
-        <StyledInfo>
+        <StyledInfo variant={variantOptionsMain}>
             {
                 isStarted &&
                     <StyledIcon>
                         <HiXMark onClick={mostrar} />
                     </StyledIcon>
             }
-            <StyledContent>
+            <StyledContent variant={variantContentOptions}>
                 <StyledDescription>
                     <h2>Información</h2>
                     <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Officiis, quidem nostrum? Accusantium ipsam sed a maiores delectus libero, eaque nihil! Necessitatibus quidem nostrum ad obcaecati accusamus ullam ab! Eveniet ipsam hic error voluptate explicabo, numquam molestiae voluptates repudiandae debitis dolore provident, deserunt, rerum autem ipsum rem animi voluptas ducimus fuga?</p>
                 </StyledDescription>
-                <StyledControls>
+                <StyledControls variant = {variantOptionsControls}>
                     <h2>Controles</h2>
                     <ul className='lista-controles'>
                         <li>
@@ -33,7 +33,7 @@ export function Informacion ({ iniciar, isStarted, mostrar }) {
                         </li>
                         <li>
                             <img className="icons" src={Touch} />
-                            <p>Tocar</p>
+                            <p>Apretar</p>
                         </li>
                         <li>
                             <img className="icons" src={Flechas} />
@@ -45,8 +45,8 @@ export function Informacion ({ iniciar, isStarted, mostrar }) {
             {
                 !isStarted &&
                 <StyledBtnDiv>
-                    <StyledBoton onClick={iniciar}>Soy un boton para comenzar el quiz</StyledBoton>
-                    <StyledBoton onClick={iniciar}>Soy un boton para salir el quiz</StyledBoton>
+                    <StyledBoton variant = {variantButtonStart} onClick={iniciar}>Comenzar el quiz</StyledBoton>
+                    <StyledBoton variant = {variantButtonExit} onClick={iniciar}>Salir el quiz</StyledBoton>
                 </StyledBtnDiv>
             }
         </StyledInfo>
@@ -54,7 +54,8 @@ export function Informacion ({ iniciar, isStarted, mostrar }) {
 }
 
 const StyledInfo = styled.div`
-    background-color: #c95a00;
+    background-color: ${props => props.variant.backgroundColor};
+    border: 1px solid ${props => props.variant.borderColor};
     border-radius: 25px;
     z-index: 10;
     width: 70vw;
@@ -70,8 +71,6 @@ const StyledInfo = styled.div`
     display: flex;
     flex-direction: column;
     justify-content: space-between;
-    /* padding: 10px; */
-    /* overflow: hidden; */
     
     @media screen and (max-width: 850px) {
         width: 90vw;
@@ -91,12 +90,19 @@ const StyledInfo = styled.div`
 `;
 
 const StyledContent = styled.div`
-    background-color: #0231cc;
     flex: 1;
     max-height: 100%;
     display: flex;
     justify-content: space-between;
     overflow: hidden;
+
+    & p{
+        color: ${props => props.variant.textColor}
+    }
+
+    & h2{
+        color: ${props => props.variant.titleColor}
+    }
 
     @media screen and (max-width: 600px) {
         max-height: 100%;
@@ -108,8 +114,7 @@ const StyledContent = styled.div`
         }
     }
 
-    @media screen and (orientation:landscape) and (max-height: 500px),
-    (min-width: 760px) and (min-height: 1000px){
+    @media screen and (orientation:landscape) and (max-height: 500px){
         max-height: 100%;
         & h2{
             margin-top: 5px;
@@ -126,7 +131,6 @@ const StyledContent = styled.div`
 `;
 
 const StyledBtnDiv = styled.div`
-    background-color: #d61f6b;
     height: 10vh;
     display: flex;
     justify-content: space-evenly;
@@ -136,7 +140,6 @@ const StyledBtnDiv = styled.div`
 `;
 
 const StyledBoton = styled.button`
-
     border-radius: 8px;
     min-width: 20%;
     border: 1px solid transparent;
@@ -145,14 +148,15 @@ const StyledBoton = styled.button`
     font-weight: 500;
     font-family: inherit;
     
-    background-color: ${theme.palette.temas.buttonBackground};
-    border: 1px solid ${theme.palette.temas.buttonBorder};
-    color: ${theme.palette.temas.buttonText};
-    transition: border-color 0.25s;
-
+    background-color: ${props => props.variant.background};
+    border: 1px solid ${props => props.variant.border};
+    color: ${props => props.variant.color};
+    transition: ease-in 0.25s;
     cursor: pointer;
-        hover {
-        background-color: ${theme.palette.temas.buttonHover};
+
+    &:hover {
+        border: 1px solid ${props => props.variant.hover};
+        background-color: ${props => props.variant.hover};
     }
 
     @media screen and (max-width: 900px) {
@@ -166,20 +170,25 @@ const StyledBoton = styled.button`
         padding: 0;
     }
 
-    @media screen and (orientation:landscape) and (max-height: 500px),
-    (min-width: 850px) and (min-height: 1000px){
+    @media screen and (orientation:landscape) and (max-height: 500px){
         height: 80%; 
         font-size: 80%;
         overflow: hidden;
         display: flex;
         justify-content: center;
         align-items: center;
-        
+    }
+    @media screen and (min-height: 1000px) and (max-width: 850px){
+        height: 50%; 
+        font-size: 1.4rem;
+        overflow: hidden;
+        display: flex;
+        justify-content: center;
+        align-items: center;
     }
 `;
 
 const StyledIcon = styled.div`
-    background-color: #d61f6b;
     height: 5vh;
     width: 5vh;
     position: absolute;
@@ -192,17 +201,22 @@ const StyledIcon = styled.div`
     padding: 0;
     cursor: pointer;
 
-    @media screen and (orientation:landscape) and (max-height: 500px),
-    (min-width: 760px) and (min-height: 1000px){
+    @media screen and (orientation:landscape) and (max-height: 500px){
         right: 5px;
         top: 5px;
+        height: 5vh;
+        width: 5vh;
+    }
+
+    @media screen and (min-height: 1000px) and (max-width: 850px){
+        height: 5vh;
+        width: 5vh;
         height: 5vh;
         width: 5vh;
     }
 `;
 
 const StyledDescription = styled.div`
-    background-color: coral;
     text-align: justify;
     min-height: 100%;
     width: 60%;
@@ -219,22 +233,24 @@ const StyledDescription = styled.div`
         }
     }
 
+    @media screen and (min-height: 1000px) and (max-width: 850px){
+        padding-top: 30px;
+        max-width: 60%;
+    }
+
     @media screen and (orientation:landscape) and (max-height: 500px),
     (min-width: 760px) and (min-height: 1000px){
         width: 70%;
-
     }
 
 `;
 
 const StyledControls = styled.div`
     text-align: center;
-    background-color: tomato;
     display: flex;
     flex-direction: column;
-    border-left:1px solid #65a14d;
+    border-left:1px solid ${props => props.variant.sepadorColor};
     width: 50%;
-    padding-left: 10px;
     min-height: 100%;
     padding: 10px 10px 5px 20px;
 
@@ -250,14 +266,14 @@ const StyledControls = styled.div`
     }
 
     .lista-controles li{
-        border: 2px solid #83ce65;
+        border: 2px dashed ${props => props.variant.bordes};
         border-radius: 20px;
         display: flex;
         justify-content: space-around;
         align-items: center;
         list-style: none;
         height: 30%;
-        background-color: #eeffe7;
+        background-color: ${props => props.variant.background};
         font-size: 1.6rem;
     }
 
@@ -304,6 +320,18 @@ const StyledControls = styled.div`
 
     }
 
+    @media screen and (min-height: 1000px) and (max-width: 850px){
+        padding-top: 30px;
+        min-width: 40%;
+        .icons{
+            /* height: 70%; */
+            width: 60%;
+        }
+        & li p{
+            margin: 10px;
+        }
+    }
+
     @media screen and (orientation:landscape) and (max-height: 500px){
         width: 30%;
 
@@ -340,3 +368,34 @@ const StyledControls = styled.div`
 
 
 `;
+
+const variantOptionsMain = {
+    backgroundColor: theme.palette.VentanasEmergentes.Informacion.background,
+    borderColor: theme.palette.VentanasEmergentes.Informacion.border
+};
+
+const variantContentOptions = {
+    titleColor: theme.palette.VentanasEmergentes.Informacion.titulos,
+    textColor: theme.palette.VentanasEmergentes.Informacion.texto
+};
+
+const variantOptionsControls = {
+    sepadorColor: theme.palette.VentanasEmergentes.Informacion.Controles.sepador,
+    bordes: theme.palette.VentanasEmergentes.Informacion.Controles.bordes,
+    background: theme.palette.VentanasEmergentes.Informacion.Controles.background
+
+};
+
+const variantButtonStart = {
+    background: theme.palette.VentanasEmergentes.Informacion.Botones.backgroundSalir,
+    color: theme.palette.VentanasEmergentes.Informacion.Botones.colorSalir,
+    border: theme.palette.VentanasEmergentes.Informacion.Botones.borderSalir,
+    hover: theme.palette.VentanasEmergentes.Informacion.Botones.hover
+};
+
+const variantButtonExit = {
+    background: theme.palette.VentanasEmergentes.Informacion.Botones.backgroundComenzar,
+    color: theme.palette.VentanasEmergentes.Informacion.Botones.colorComenzar,
+    border: theme.palette.VentanasEmergentes.Informacion.Botones.borderComenzar,
+    hover: theme.palette.VentanasEmergentes.Informacion.Botones.hover
+};

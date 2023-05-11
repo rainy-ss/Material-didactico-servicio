@@ -147,9 +147,14 @@ const StyledDiv = styled.div`
         right: 20px;
     }
 
-    
+    @media screen and (orientation:landscape) and (max-height: 550px) {
+        & .contador{
+            top: unset;
+            bottom: 10vh;
+            right: 50%;
+        }
 
-
+    }
 
 `;
 
@@ -210,19 +215,11 @@ const StyledEstadisticas = styled.div`
             margin: 0;
             font-size: 1.2rem;
         }
-
-    }
-
-    @media screen and (max-width: 1000px),
-    (min-height: 1000px) and (max-width: 1300px){
-        
-
     }
 
     @media screen and (max-width: 760px) and (min-height: 550px){
         flex-direction: column-reverse;
         padding: 10px;
-        
     }
     
 `;
@@ -332,7 +329,7 @@ const StyledBtnDiv = styled.div`
 
 const StyledButton = styled.button`
     font-size: 1rem;
-    padding: 5px;
+    padding: 5px 10px;
     height: 70%;
     font-weight: bold;
     min-width: 100px;
@@ -358,6 +355,7 @@ const StyledButton = styled.button`
         padding: 0 15px;
         font-size: 14px;
         min-width: 20px;
+        height: 100%;
 
         &.btn{
             min-width: 20%;

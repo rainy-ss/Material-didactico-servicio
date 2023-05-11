@@ -24,7 +24,6 @@ export function ListaTemas () {
 }
 
 const StyledDiv = styled.div`
-
     background-color: ${theme.palette.temas.main};
     height: 100%;
     display: flex;
