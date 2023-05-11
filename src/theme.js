@@ -78,7 +78,28 @@ export const theme = {
                 background: '#f3b0b0',
                 border: 'salmon',
                 color: '#272422',
-                borderRadius: '25px'
+                borderRadius: '25px',
+                backgroundDisabled: 'darkgray',
+                borderDisabled: 'grey',
+                colorDisabled: 'grey'
+            },
+            PanelRespuestas: {
+                Pregunta: {
+                    background: '#f0c2c2',
+                    border: '#E76161'
+                },
+                RespuestaCorrecta: {
+                    background: '#578f61',
+                    border: '#296133'
+                },
+                RespuestaIncorrecta: {
+                    background: '#cc6969',
+                    border: '#7c3131'
+                },
+                OtraRespuesta: {
+                    background: '#e5ecfa',
+                    border: '#ccbce0'
+                }
             }
 
         }

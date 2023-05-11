@@ -155,7 +155,6 @@ const StyledButtonRespuesta = styled.button`
         & .imagen{
             height: 100%;
             object-fit: cover;
-            background-color: #6e6868;
         }
 
     }

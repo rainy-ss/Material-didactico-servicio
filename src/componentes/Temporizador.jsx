@@ -23,6 +23,14 @@ export function Temporizador ({ temporizador, isStarted, isFinished = false, tie
         setSecondsLeft(secondsLeftRef.current);
     }
 
+    function calcularTiempoFinal (segundos) {
+        let minutes = Math.floor(segundos / 60);
+        if (minutes < 10) minutes = '0' + minutes;
+        let seconds = segundos % 60;
+        if (seconds < 10) seconds = '0' + seconds;
+        return minutes + ':' + seconds;
+    }
+
     useEffect(() => {
         let interval;
         initTimer();
@@ -30,11 +38,12 @@ export function Temporizador ({ temporizador, isStarted, isFinished = false, tie
             interval = setInterval(() => {
                 if (temporizador > 0 && secondsLeftRef.current === 0) {
                     clearInterval(interval);
-                    tiempoFinal(secondsLeft);
+                    tiempoFinal(calcularTiempoFinal((temporizador * 60) - secondsLeft));
                 }
                 if (isFinished) {
                     clearInterval(interval);
-                    tiempoFinal(secondsLeft);
+                    const tiempo = (temporizador > 0) ? calcularTiempoFinal((temporizador * 60) - secondsLeft) : calcularTiempoFinal(secondsLeft);
+                    tiempoFinal(tiempo);
                 }
 
                 tick();
