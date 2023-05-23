@@ -12,7 +12,7 @@ export function BotonQuiz ({ nombreRuta, caracteristicas }) {
 }
 
 const StyledBoton = styled.button`
-border-radius: 8px;
+    border-radius: 8px;
     border: 1px solid transparent;
     padding: 0.6em 1.2em;
     font-size: 1em;
@@ -26,8 +26,13 @@ border-radius: 8px;
 
     cursor: pointer;
     hover {
-    background-color: ${theme.palette.temas.buttonHover};
-  }
+      background-color: ${theme.palette.temas.buttonHover};
+    }
+
+    @media screen and (max-width: 768px) {
+      padding: 10px 15px;
+      font-size: 1rem;
+    }
 `;
 
 const StyledDiv = styled.div`

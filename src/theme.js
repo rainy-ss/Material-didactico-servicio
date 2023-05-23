@@ -31,14 +31,14 @@ export const theme = {
             optionHoverBackground: '#f3e281',
             UpperBar: {
                 titleText: '#e4dfdf',
-                tempoBackground: '#ece8bc',
-                tempoText: '#434f57',
+                tempoBackground: '#635e5b',
+                tempoColor: '#ffffff',
                 background: '#151515'
             },
             BottomBar: {
                 background: 'transparent',
-                textColor: '#ffffff',
-                textBackground: '#635e5b',
+                countText: '#7f7a86',
+                countBackground: '#c3b7ce',
                 Buttons: {
                     infoBackground: '#f0f0f0',
                     infoColor: '#239e5a',
@@ -60,6 +60,48 @@ export const theme = {
             }
 
         },
+        VentanasEmergentes: {
+            Informacion: {
+                background: '#f1f5ef',
+                border: '#65a14d',
+                iconoCerrar: '#72a85c',
+                titulos: '#65a14d',
+                texto: 'rgb(83, 79, 79)',
+                Controles: {
+                    sepador: '#65a14d',
+                    bordes: '#83ce65',
+                    background: '#eeffe7'
+                },
+                Botones: {
+                    backgroundComenzar: '#239e5a',
+                    colorComenzar: '#ffff',
+                    borderComenzar: '#1c7e69',
+                    backgroundSalir: 'rgb(252, 99, 61)',
+                    colorSalir: '#ffff',
+                    borderSalir: 'rgb(231, 76, 49)',
+                    hover: '#554454'
+
+                }
+
+            },
+            Alerta: {
+                background: '#ffd9a7',
+                separador: '#f3c68b',
+                titulos: '#c74310',
+                texto: '#3a3634',
+                Botones: {
+                    backgroundContinuar: '#f7f0f0',
+                    colorContinuar: 'rgb(252, 99, 61)',
+                    borderContinuar: '#e74c31',
+                    backgroundSalir: 'rgb(252, 99, 61)',
+                    colorSalir: '#ffff',
+                    borderSalir: 'rgb(231, 76, 49)',
+                    hover: '#554454'
+                }
+
+            }
+
+        },
         Results: {
             background: '#f8ffd8',
             color: '#434f57',
@@ -78,7 +120,28 @@ export const theme = {
                 background: '#f3b0b0',
                 border: 'salmon',
                 color: '#272422',
-                borderRadius: '25px'
+                borderRadius: '25px',
+                backgroundDisabled: 'darkgray',
+                borderDisabled: 'grey',
+                colorDisabled: 'grey'
+            },
+            PanelRespuestas: {
+                Pregunta: {
+                    background: '#f0c2c2',
+                    border: '#E76161'
+                },
+                RespuestaCorrecta: {
+                    background: '#578f61',
+                    border: '#296133'
+                },
+                RespuestaIncorrecta: {
+                    background: '#cc6969',
+                    border: '#7c3131'
+                },
+                OtraRespuesta: {
+                    background: '#e5ecfa',
+                    border: '#ccbce0'
+                }
             }
 
         }

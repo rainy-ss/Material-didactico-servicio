@@ -24,6 +24,8 @@ const StyledTemas = styled.div`
     overflow: hidden visible;
     height: 100%;
     
-    
+    @media screen and (max-height: 550px){
+        margin-top: 25vh;
+    }
 
 `;

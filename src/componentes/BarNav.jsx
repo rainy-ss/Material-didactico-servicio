@@ -54,6 +54,7 @@ const StyledNavBar = styled.nav`
     top : 10px;
     left: 50%;
     transform: translate(-50%);
+    overflow: hidden;
 
     .logo-uam{
         height: 100%;
@@ -99,8 +100,9 @@ const StyledNavBar = styled.nav`
         
     }
 
-    @media screen and (max-width: 768px) {
-        
+    @media screen and (max-width: 768px) and (min-height: 550px){
+        overflow: unset;
+        padding: 10px;
         height: 10vh;
         .barra-lista-enlaces{
             display: flex;
@@ -108,7 +110,7 @@ const StyledNavBar = styled.nav`
             align-items: flex-start;
             justify-content: flex-start;
             position: fixed;
-            top: 50px;
+            top: 10vh;
             right: -500px;
             width: 300px;
             height: 100vh;
@@ -143,6 +145,7 @@ const StyledNavBar = styled.nav`
             color: ${theme.palette.Home.textColor};
             border: none;
             border-radius: 5px;
+            padding: 15px;
             
         }
 

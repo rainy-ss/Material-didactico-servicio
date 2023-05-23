@@ -12,15 +12,15 @@ export function BarraInferior ({ showInfo, informacion, mostrar, numeroPregunta,
 
     return (
         <StyledDiv variant = {theme.palette.Quiz.BottomBar.background}>
-            <StyledButton variant = {variantButtonInfo} onClick={mostrar}>informacion</StyledButton>
+            <StyledButton variant = {variantButtonInfo} onClick={mostrar}>Informacion</StyledButton>
             { showInfo && informacion }
             {showExit && <AlertaSalir mostrarAlerta = {mostrarAlerta}/>}
 
             <StyledContador variant={variantOptions}>
-                <p>{numeroPregunta}/{maxPreguntas}</p>
+                <p>{numeroPregunta} { maxPreguntas !== 0 && ('/' + maxPreguntas)}</p>
 
             </StyledContador>
-            <StyledButton variant = {variantButtonExit} onClick={mostrarAlerta}>rips</StyledButton>
+            <StyledButton variant = {variantButtonExit} onClick={mostrarAlerta}>Salir</StyledButton>
         </StyledDiv>
     );
 }
@@ -41,8 +41,8 @@ const variantButtonExit = {
 
 const variantOptions = {
     Count: {
-        backgroundColor: theme.palette.Quiz.UpperBar.tempoBackground,
-        color: theme.palette.Quiz.UpperBar.tempoText
+        backgroundColor: theme.palette.Quiz.BottomBar.countBackground,
+        color: theme.palette.Quiz.BottomBar.countText
     }
 };
 
@@ -65,49 +65,29 @@ const StyledDiv = styled.div`
 `;
 
 const StyledContador = styled.div`
-    max-width: 150px;
-    width: 15%;
-    height: 80%;
     background-color: ${props => props.variant.Count.backgroundColor};
     color: ${props => props.variant.Count.color};
+    max-width: 150px;
+    width: 30%;
+    height: 100%;
     display: flex;
     align-items: center;
     justify-content: center;
-    border-radius: 30px;
+    padding: 0 10px;
+    border-radius: 40px;
+    overflow: hidden;
     
     padding: 5px;
 
     & p{
-        line-height: 100%;
         margin: 0;
-        font-size: 2.5rem;
-        height: auto;
-    }
-    
-    @media screen and (max-width: 760px) and (min-height: 550px){
-        width: 20%;
-
-        & p{
-            font-size: 1.7rem;
-        }
+        font-size: 1.5em;
     }
 
     @media screen and (orientation:landscape) and (max-height: 550px) {
-        width: 10%;
-        height: 90%;
-
         & p{
-            height: auto;
-            font-size: 1.7rem;
+            font-size: 1.5rem;
         }   
-    }
-
-    @media screen and (min-width: 760px) and (min-height: 1000px){
-        width: 30%;
-        & p{
-            height: auto;
-            font-size: 3rem;
-        }  
     }
     
 `;
