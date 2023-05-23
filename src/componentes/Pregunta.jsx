@@ -12,11 +12,6 @@ export function Pregunta ({ id, tema, link }) {
             });
     }, []);
 
-    const variantOptions = {
-        backgroundColor: theme.palette.Quiz.Question.background,
-        borderColor: theme.palette.Quiz.Question.border
-    };
-
     return (
         <StyledDiv className = {`contenedor-${id} contenedorPregunta`} variant={variantOptions}>
             <img
@@ -28,6 +23,10 @@ export function Pregunta ({ id, tema, link }) {
     );
 }
 
+const variantOptions = {
+    backgroundColor: theme.palette.Quiz.Question.background,
+    borderColor: theme.palette.Quiz.Question.border
+};
 const StyledDiv = styled.div`
     grid-column: 2;
     grid-row: 2;
