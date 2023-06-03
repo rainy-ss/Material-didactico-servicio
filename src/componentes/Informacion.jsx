@@ -5,6 +5,7 @@ import Flechas from '../imagenes/arrow_keys_fa.svg';
 import Touch from '../imagenes/9081044_hand_click_icon.svg';
 import Click from '../imagenes/9080515_click_icon.svg';
 import { theme } from '../theme.js';
+import { Link } from 'react-router-dom';
 
 export function Informacion ({ iniciar, isStarted, mostrar }) {
     /*
@@ -46,7 +47,7 @@ export function Informacion ({ iniciar, isStarted, mostrar }) {
                 !isStarted &&
                 <StyledBtnDiv>
                     <StyledBoton variant = {variantButtonStart} onClick={iniciar}>Comenzar el quiz</StyledBoton>
-                    <StyledBoton variant = {variantButtonExit} onClick={iniciar}>Salir el quiz</StyledBoton>
+                    <StyledBoton variant = {variantButtonExit} as={Link} to = {'/temas'} >Salir el quiz</StyledBoton>
                 </StyledBtnDiv>
             }
         </StyledInfo>

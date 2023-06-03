@@ -12,17 +12,11 @@ export function Respuesta ({ id, icon, tema, objRespuesta, manejaRespuesta }) {
             .then(module => {
                 setImagen(module.default);
             });
-    }, []);
-
-    const variantOptions = {
-        backgroundColor: theme.palette.Quiz.Answers.background,
-        borderColor: theme.palette.Quiz.Answers.border,
-        hoverBack: theme.palette.Quiz.Answers.hoverBackground,
-        hoverBord: theme.palette.Quiz.Answers.hoverBorder
-    };
+    }, [objRespuesta.respuesta]);
 
     return (
         <StyledDiv className = {`contenedor-${id} contenedorRespuesta`} >
+
             <StyledButtonRespuesta variant={variantOptions}>
                 <img
                     className="imagen"
@@ -38,6 +32,13 @@ export function Respuesta ({ id, icon, tema, objRespuesta, manejaRespuesta }) {
         </StyledDiv>
     );
 }
+
+const variantOptions = {
+    backgroundColor: theme.palette.Quiz.Answers.background,
+    borderColor: theme.palette.Quiz.Answers.border,
+    hoverBack: theme.palette.Quiz.Answers.hoverBackground,
+    hoverBord: theme.palette.Quiz.Answers.hoverBorder
+};
 
 const StyledDiv = styled.div`
     height: 100%;

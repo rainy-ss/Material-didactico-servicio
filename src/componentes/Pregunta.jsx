@@ -10,7 +10,7 @@ export function Pregunta ({ id, tema, link }) {
             .then(module => {
                 setImagen(module.default);
             });
-    }, []);
+    }, [link]);
 
     return (
         <StyledDiv className = {`contenedor-${id} contenedorPregunta`} variant={variantOptions}>

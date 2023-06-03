@@ -64,6 +64,7 @@ export function Quiz ({ objTema, objQuiz, arreglo = [] }) {
                             preguntas ={arreglo}
                             temporizador = {objQuiz.temporizador}
                             tema = {objTema.nombreRuta}
+                            id = {objQuiz.id}
                         />
                     </>
                     : isStarted

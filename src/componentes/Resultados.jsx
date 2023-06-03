@@ -1,12 +1,12 @@
 import React, { useEffect, useState } from 'react';
-import styled from 'styled-components';
 import { Link } from 'react-router-dom';
+import styled from 'styled-components';
 import { theme } from '../theme.js';
 import { PanelRespuestas } from './PanelRespuestas.jsx';
 import { IconContext } from 'react-icons';
 import { HiArrowLeft, HiArrowRight } from 'react-icons/hi2';
 
-export function Resultados ({ tiempoFinal, preguntas = [], temporizador, tema }) {
+export function Resultados ({ tiempoFinal, preguntas = [], temporizador, tema, id }) {
     const [showRespuestas, setShowRespuestas] = useState(false);
     const [showVentanaPreguntas, setShowVentanaPreguntas] = useState(0);
     const [respuestas, setRespuestas] = useState([]);
@@ -42,6 +42,10 @@ export function Resultados ({ tiempoFinal, preguntas = [], temporizador, tema })
         } else {
             return 'NA';
         }
+    }
+
+    function recargarPagina () {
+        location.reload();
     }
 
     return (
@@ -91,9 +95,11 @@ export function Resultados ({ tiempoFinal, preguntas = [], temporizador, tema })
             }
 
             <StyledBtnDiv variant={btnDivOptions}>
-                <StyledButton className="btn try" variant={buttonOptions}>
+
+                <StyledButton onClick={recargarPagina} className="btn try" variant={buttonOptions}>
                     Try again?
                 </StyledButton>
+
                 <StyledNavDiv>
                     {
                         showRespuestas &&

@@ -8,24 +8,39 @@ export function ConstruirQuiz () {
     const { tema, id } = useParams();
     const [datos, setDatos] = useState([]);
 
-    /*
-        Tenemos de parametros el tema y el id del quiz
-        Cosas a considerar:
-        1. Se puede llegar a este servicio sin haber pasado por la página de temas, por lo que es necesario validar que ambos parametros sean validos.
-        2. Tomando el tema y el id del quiz, se debe llamar al servicio que construye el arreglo de preguntas de forma aleatoria y sus respuesta
-           tambien seran de forma aleatoria (se simulara por el momento).
-
-    */
-
-    useEffect(() => {
-        import(`../scripts/${tema}/arregloSVG.js`).then(modulo => {
-            setDatos(modulo.default);
-        });
-    }, []);
-
     const objTema = bancoTemas.find(elemento => elemento.nombreRuta === tema);
     let objQuiz;
     let bandera = false;
+
+    useEffect(() => {
+        import(`../scripts/${tema}/arregloSVG.js`).then(modulo => {
+            const banco = modulo.default;
+            const numeros = [];
+            let arreglo = [];
+
+            function comparacionAleatoria () {
+                return Math.random() - 0.5;
+            }
+
+            for (let i = 0; i < banco.length; i++) {
+                numeros.push(i);
+            }
+
+            numeros.sort(comparacionAleatoria);
+
+            if ((typeof objQuiz) !== 'undefined') {
+                if (objQuiz.maxPreguntas !== 0) {
+                    for (let i = 0; i < objQuiz.maxPreguntas; i++) {
+                        arreglo.push(banco[numeros[i]]);
+                    }
+                } else {
+                    arreglo = banco;
+                }
+            }
+
+            setDatos(arreglo);
+        });
+    }, []);
 
     if (typeof objTema !== 'undefined') {
         const quiz = objTema.quizDisponible.find(elemento => elemento === parseInt(id));
