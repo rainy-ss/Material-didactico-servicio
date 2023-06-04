@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { FaBars, FaRegWindowClose } from 'react-icons/fa';
-import UAM from '../imagenes/UAM.svg';
+import UAM from '../imagenes/UAM.png';
 import styled from 'styled-components';
 import { Link } from 'react-router-dom';
 import { theme } from '../theme';

@@ -16,6 +16,7 @@ export function ConstruirQuiz () {
         import(`../scripts/${tema}/arregloSVG.js`).then(modulo => {
             const banco = modulo.default;
             const numeros = [];
+            const ordenPreguntas = [1, 2, 3, 4];
             let arreglo = [];
 
             function comparacionAleatoria () {
@@ -27,10 +28,13 @@ export function ConstruirQuiz () {
             }
 
             numeros.sort(comparacionAleatoria);
+            ordenPreguntas.sort(comparacionAleatoria);
 
             if ((typeof objQuiz) !== 'undefined') {
                 if (objQuiz.maxPreguntas !== 0) {
                     for (let i = 0; i < objQuiz.maxPreguntas; i++) {
+                        banco[numeros[i]].respuestas = banco[numeros[i]].respuestas.sort(comparacionAleatoria);
+
                         arreglo.push(banco[numeros[i]]);
                     }
                 } else {
