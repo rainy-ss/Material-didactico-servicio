@@ -48,6 +48,24 @@ export function Resultados ({ tiempoFinal, preguntas = [], temporizador, tema, i
         location.reload();
     }
 
+    function calcularCalificacion () {
+        let promedio = 0;
+
+        if (respuestas.length > 0) {
+            let contador = 0;
+
+            respuestas.forEach((respuesta) => {
+                if (respuesta.esCorrecta) {
+                    contador++;
+                }
+            });
+
+            promedio = (contador / preguntas.length) * 100;
+        }
+
+        return promedio;
+    }
+
     return (
 
         <StyledDiv variant={mainOptions}>
@@ -65,11 +83,10 @@ export function Resultados ({ tiempoFinal, preguntas = [], temporizador, tema, i
                                 <ul className="lista-est">
                                     <li><strong>Tu tiempo:</strong> {tiempoFinal}</li>
                                     <li><strong>Preguntas contestadas:</strong> {respuestas.length}</li>
-                                    <li><strong>Errores:</strong> 18</li>
                                 </ul>
 
                                 <StyledCalificacion variant={califOptions}>
-                                    <p>100%</p>
+                                    <p>{calcularCalificacion()}</p>
                                     <h3>Calificacion final</h3>
                                 </StyledCalificacion>
 
@@ -97,7 +114,7 @@ export function Resultados ({ tiempoFinal, preguntas = [], temporizador, tema, i
             <StyledBtnDiv variant={btnDivOptions}>
 
                 <StyledButton onClick={recargarPagina} className="btn try" variant={buttonOptions}>
-                    Try again?
+                    Intentar de nuevo
                 </StyledButton>
 
                 <StyledNavDiv>
@@ -125,7 +142,7 @@ export function Resultados ({ tiempoFinal, preguntas = [], temporizador, tema, i
 
                 </StyledNavDiv>
                 <StyledButton className="btn exit" as={Link} to = {'/temas'} variant={buttonOptions}>
-                    Ciao
+                    Salir
                 </StyledButton>
 
             </StyledBtnDiv>
@@ -212,7 +229,7 @@ const StyledEstadisticas = styled.div`
     & li{
         list-style: none;
         margin: 10px;
-        font-size: 1.4rem;
+        font-size: 1.8rem;
     }
 
     @media screen and (orientation:landscape) and (max-height: 550px) {
@@ -226,18 +243,28 @@ const StyledEstadisticas = styled.div`
     @media screen and (max-width: 760px) and (min-height: 550px){
         flex-direction: column-reverse;
         padding: 10px;
+
+        & li{
+            margin: 0;
+            font-size: 1.2rem;
+        }
     }
     
 `;
 
 const StyledCalificacion = styled.div`
     text-align: center;
+    width: 25%;
+    margin-top: 10px;
+    
 
     & p{
-        font-size: 10vh;
+        font-size: 15vh;
         background-color: ${props => props.variant.backgroundColor};
         color: ${props => props.variant.color};
-        padding: 20px;
+        border-radius: 10px;
+        padding: 10px;
+        margin:0;
         margin-bottom: 10px;
     }
 
@@ -261,10 +288,11 @@ const StyledCalificacion = styled.div`
     }
 
     @media screen and (max-width: 760px) and (min-height: 550px){
+        width: 80%;
         & p{
             margin: 0;
             font-size: 5vh;
-            padding: 20px;
+            padding: 5px;
             margin-bottom: 10px;
         }
         & h3{
@@ -284,6 +312,7 @@ const StyledListaDatosQuiz = styled.ul`
 
     & li{
         list-style: none;
+        font-size: 1.5rem;
     }
 
     @media screen and (orientation:landscape) and (max-height: 550px) {
@@ -298,6 +327,11 @@ const StyledListaDatosQuiz = styled.ul`
         flex-direction: column;
         border-top: 1px solid grey;
         margin: 0;
+
+        & li{
+            list-style: none;
+            font-size: 1.1rem;
+        }
     }
     
 `;
@@ -357,6 +391,12 @@ const StyledButton = styled.button`
         align-items: center;
     }
 
+    &:hover{
+        border: 2px solid ${props => props.variant.backgroundColor};
+        background-color: ${props => props.variant.borderColor};
+        color: white;
+    }
+
     @media screen and (orientation:landscape) and (max-height: 550px) {
         padding: 0 15px;
         font-size: 14px;
@@ -372,7 +412,7 @@ const StyledButton = styled.button`
 
     @media screen and (max-width: 760px) and (min-height: 550px){
         min-width: 20px;
-        max-width: 100px;
+        max-width: 150px;
         min-height: 100%;
         font-size: 0.8rem;
         overflow: hidden;
@@ -380,8 +420,8 @@ const StyledButton = styled.button`
         
         &.btn{
             height: 70%;
-            min-width: 40%;
-            width: 30vw;
+            min-width: 90%;
+            width: 40vw;
         }
         &.try{
             grid-row: 2;

@@ -37,8 +37,8 @@ export const theme = {
             },
             BottomBar: {
                 background: 'transparent',
-                countText: '#7f7a86',
-                countBackground: '#c3b7ce',
+                countText: '#78737f',
+                countBackground: '#dad0e3',
                 Buttons: {
                     infoBackground: '#f0f0f0',
                     infoColor: '#239e5a',
@@ -103,11 +103,11 @@ export const theme = {
 
         },
         Results: {
-            background: '#f8ffd8',
+            background: '#f6fbff',
             color: '#434f57',
-            btnsDivColor: '#272422',
+            btnsDivColor: '#e1eef8',
             Calificacion: {
-                background: '#CFAA7A',
+                background: '#82afbd',
                 color: '#ffffff'
             },
             BotonesOpciones: {
@@ -117,9 +117,9 @@ export const theme = {
                 borderRadius: '10px'
             },
             BotonesNavegacion: {
-                background: '#f3b0b0',
-                border: 'salmon',
-                color: '#272422',
+                background: '#ffcedd',
+                border: '#d87492',
+                color: '#99445d',
                 borderRadius: '25px',
                 backgroundDisabled: 'darkgray',
                 borderDisabled: 'grey',

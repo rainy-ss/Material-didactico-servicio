@@ -21,7 +21,6 @@ export function Panel ({ preguntas = [], numeroPregunta, actualizarPregunta, ter
     */
 
     function manejaRespuesta (id, esCorrecta) {
-        console.log('>>>> ' + id + '>>>>> ' + esCorrecta);
         respuestasUsuario.push({ id, esCorrecta });
         if (numeroPregunta === (preguntas.length - 1)) {
             localStorage.setItem('respuestas', JSON.stringify(respuestasUsuario));
