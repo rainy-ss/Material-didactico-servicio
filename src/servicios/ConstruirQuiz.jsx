@@ -11,13 +11,14 @@ export function ConstruirQuiz () {
     const objTema = bancoTemas.find(elemento => elemento.nombreRuta === tema);
     let objQuiz;
     let bandera = false;
+    localStorage.removeItem('respuestas');
 
     useEffect(() => {
         import(`../scripts/${tema}/arregloSVG.js`).then(modulo => {
             const banco = modulo.default;
             const numeros = [];
             const ordenPreguntas = [1, 2, 3, 4];
-            let arreglo = [];
+            const arreglo = [];
 
             function comparacionAleatoria () {
                 return Math.random() - 0.5;
@@ -38,7 +39,11 @@ export function ConstruirQuiz () {
                         arreglo.push(banco[numeros[i]]);
                     }
                 } else {
-                    arreglo = banco;
+                    for (let i = 0; i < banco.length; i++) {
+                        banco[numeros[i]].respuestas = banco[numeros[i]].respuestas.sort(comparacionAleatoria);
+
+                        arreglo.push(banco[numeros[i]]);
+                    }
                 }
             }
 
