@@ -1,16 +1,29 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { Tema } from '../componentes/Tema.jsx';
 import { bancoTemas } from '../scripts/bancoTemas.js';
 import styled from 'styled-components';
 import { theme } from '../theme';
 
 export function ListaTemas () {
-    // Añadir buscador de temas
+    const [busqueda, setBusqueda] = useState(bancoTemas);
+
+    function filtrar () {
+        const bancoFiltrado = [];
+        const entrada = document.getElementById('entrada-texto').value;
+
+        bancoTemas.forEach((elemento) => {
+            if (elemento.nombre.toLowerCase().includes(entrada.toLowerCase())) {
+                bancoFiltrado.push(elemento);
+            }
+        });
+        setBusqueda(bancoFiltrado);
+    }
 
     return (
         <StyledDiv>
+            <input id='entrada-texto' type='text' placeholder='Buscar tema...' onChange={filtrar}/>
             {
-                bancoTemas.map((elemento) => (
+                busqueda.map((elemento) => (
                     <div key={elemento.id}>
                         <Tema
                             informacion= {elemento}
@@ -31,5 +44,6 @@ const StyledDiv = styled.div`
     align-items: center;
     gap: 15px;
     padding: 10px;
+
 
 `;
