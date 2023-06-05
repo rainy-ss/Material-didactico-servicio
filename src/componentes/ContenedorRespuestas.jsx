@@ -10,7 +10,7 @@ export function ContenedorRespuestas ({ id, esPregunta, tema, link, estilo }) {
             .then(module => {
                 setImagen(module.default);
             });
-    }, []);
+    }, [link]);
 
     function determinarEstilo () {
         if (estilo === 'correct') {
