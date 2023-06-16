@@ -25,14 +25,8 @@ export function Panel ({ preguntas = [], respuestasUsuario = [], numeroPregunta,
 
     function manejaRespuesta (id, esCorrecta) {
         if (esCorrecta) {
-            /*
-             mandar icono de correcto
-            */
             imagen = correcta;
         } else {
-            /*
-             mandar icono de incorrecto
-            */
             imagen = incorrecta;
         }
         SetAviso(true);
@@ -44,12 +38,10 @@ export function Panel ({ preguntas = [], respuestasUsuario = [], numeroPregunta,
                 SetAviso(false);
                 actualizarPregunta();
             }
-        }, 1000);
+        }, 500);
     }
 
     function handleKeyUp (event) {
-        console.log(event);
-
         if (event.key === 'ArrowUp') {
             manejaRespuesta(preguntas[numeroPregunta].respuestas[0].id, preguntas[numeroPregunta].respuestas[0].respuestaCorrecta);
         } else if (event.key === 'ArrowRight') {
