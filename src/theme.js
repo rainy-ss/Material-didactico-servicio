@@ -21,8 +21,10 @@ export const theme = {
             buttonBorder: '#3d3b4e',
             buttonHover: '#8d9b94',
             busquedaBorder: '#7da6b1',
-            busquedaText: '#9ba4bd',
-            busquedaFocus: '#2d3449'
+            busquedaBorderFocused: '#f1b98b',
+            busquedaShadow: 'rgba(30, 107, 126, 0.158)',
+            busquedaShadowFocused: 'rgba(189, 148, 14, 0.308)',
+            busquedaText: '#9ba4bd'
         },
         Quiz: {
             background: '#ECF2FF',

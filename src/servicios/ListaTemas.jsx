@@ -21,7 +21,7 @@ export function ListaTemas () {
 
     return (
         <StyledDiv>
-            <input id='entrada-texto' type='text' placeholder='Buscar tema...' onChange={filtrar}/>
+            <input id='entrada-texto' type='text' placeholder='🔍 Buscar tema...' onChange={filtrar}/>
             {
                 busqueda.map((elemento) => (
                     <div key={elemento.id}>
@@ -45,5 +45,21 @@ const StyledDiv = styled.div`
     gap: 15px;
     padding: 10px;
 
+    & input{
+        margin: 10px 0 10px;
+        min-width: 50%;
+        padding: 10px 10px 10px 20px;
+        font-size: 1rem;
+        font-family: inherit;
+        border: 1px solid ${theme.palette.temas.busquedaBorder};
+        border-radius: 15px;
+        box-shadow: 0 0 5px 4px ${theme.palette.temas.busquedaShadow};
+        color: ${theme.palette.temas.busquedaText};
+    }
 
+    & input:focus{
+        outline:none !important;
+        border: 1px solid ${theme.palette.temas.busquedaBorderFocused};
+        box-shadow: 0 0 10px 4px ${theme.palette.temas.busquedaShadowFocused};
+    }
 `;
