@@ -38,12 +38,14 @@ export function ListaTemas () {
 
 const StyledDiv = styled.div`
     background-color: ${theme.palette.temas.main};
+    min-height: 50vh;
     height: 100%;
     display: flex;
     flex-direction: column;
     align-items: center;
     gap: 15px;
     padding: 10px;
+    min-width: 65vw;
 
     & input{
         margin: 10px 0 10px;
