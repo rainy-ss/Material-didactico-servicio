@@ -113,6 +113,11 @@ const StyledDiv = styled.div`
 
     @media screen and (max-width: 760px) and (min-height: 550px){
         width: 70%;
+
+        & .icons{
+            font-size: 1rem;
+            width: 30px;
+        }
     }
 
     @media screen and (min-height: 1000px) {

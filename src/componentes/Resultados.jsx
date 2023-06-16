@@ -409,7 +409,6 @@ const StyledButton = styled.button`
 
         &.btn{
             min-width: 20%;
-            width: 10vw;
         }
         
     }

@@ -80,7 +80,7 @@ export function Panel ({ preguntas = [], respuestasUsuario = [], numeroPregunta,
 
             }
             {
-                aviso ? <img className='esCorrecta' src={imagen}/> : null
+                aviso ? <div className='esCorrecta'><img src={imagen}/></div> : null
             }
 
         </StyledDiv>
@@ -105,7 +105,21 @@ const StyledDiv = styled.div`
 
     & .esCorrecta{
         position: absolute;
-        width: 15%;
+        width: 20%;
+        height: 40vh;
+        border-radius: 9rem;
+        background-color: rgba(243, 255, 255, 0.9);
+        top: 50%;
+        left: 50%;
+        -ms-transform: translate(-50%, -50%);
+        -moz-transform: translate(-50%, -50%);
+        -webkit-transform: translate(-50%, -50%);
+        transform: translate(-50%, -50%);
+    }
+
+    & .esCorrecta img{
+        max-height: 100%;
+        
     }
 
     @media screen and (orientation:landscape) and (max-height: 550px) {
@@ -117,6 +131,12 @@ const StyledDiv = styled.div`
         grid-row-gap: 20px;
         grid-column-gap: 0;
         grid-template-rows: repeat(4, 1fr);
+
+        & .esCorrecta{
+            height: 50vh;
+            width: 30vw;
+            
+        }
 
     }
 
@@ -131,7 +151,15 @@ const StyledDiv = styled.div`
     @media screen and (max-width: 760px) and (min-height: 550px){
         display: flex;
         flex-direction: column;
+        justify-content: flex-start;
         margin: 5px;
+        max-height: 100%;
+        
+        & .esCorrecta{
+            height: 40vh;
+            width: 70vw;
+            
+        }
     }
 
 

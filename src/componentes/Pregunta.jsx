@@ -69,6 +69,7 @@ const StyledDiv = styled.div`
     @media screen and (max-width: 760px) and (min-height: 550px){
         width: 100%;
         padding: 0;
+        max-height: 20vh;
 
         
     }
