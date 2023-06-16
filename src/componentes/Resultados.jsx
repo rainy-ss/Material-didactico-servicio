@@ -29,7 +29,7 @@ export function Resultados ({ tiempoFinal, preguntas = [], temporizador, tema, i
     }
 
     function determinarMaximo () {
-        return (preguntas.length - 1 === showVentanaPreguntas);
+        return (respuestas.length - 1 === showVentanaPreguntas);
     }
 
     function determinarMinimo () {
@@ -86,7 +86,7 @@ export function Resultados ({ tiempoFinal, preguntas = [], temporizador, tema, i
                                 </ul>
 
                                 <StyledCalificacion variant={califOptions}>
-                                    <p>{calcularCalificacion()}</p>
+                                    <p>{calcularCalificacion()}/100</p>
                                     <h3>Calificacion final</h3>
                                 </StyledCalificacion>
 
@@ -116,31 +116,35 @@ export function Resultados ({ tiempoFinal, preguntas = [], temporizador, tema, i
                 <StyledButton onClick={recargarPagina} className="btn try" variant={buttonOptions}>
                     Intentar de nuevo
                 </StyledButton>
-
-                <StyledNavDiv>
-                    {
-                        showRespuestas &&
+                {
+                    respuestas.length === 0
+                        ? null
+                        : <StyledNavDiv>
+                            {
+                                showRespuestas &&
                         <StyledButton className='icons' onClick = {decrementarPregunta} variant={determinarMinimo() ? buttonOptionsNavigationDisabled : buttonOptionsNavigationActive}>
                             <IconContext.Provider value={{ className: 'icons' }}>
                                 <HiArrowLeft />
                             </IconContext.Provider>
                         </StyledButton>
-                    }
+                            }
 
-                    <StyledButton variant={buttonOptionsNavigationActive} onClick={mostrarRespuestas}>
-                        {showRespuestas ? 'Mostrar Estadísticas' : 'Mostrar Respuestas'}
-                    </StyledButton>
-                    {
-                        showRespuestas &&
+                            <StyledButton variant={buttonOptionsNavigationActive} onClick={mostrarRespuestas}>
+                                {showRespuestas ? 'Mostrar Estadísticas' : 'Mostrar Respuestas'}
+                            </StyledButton>
+                            {
+                                showRespuestas &&
                         <StyledButton onClick = {incrementarPregunta} variant={determinarMaximo() ? buttonOptionsNavigationDisabled : buttonOptionsNavigationActive}>
                             <IconContext.Provider value={{ className: 'icons' }}>
                                 <HiArrowRight />
                             </IconContext.Provider>
 
                         </StyledButton>
-                    }
+                            }
 
-                </StyledNavDiv>
+                        </StyledNavDiv>
+                }
+
                 <StyledButton className="btn exit" as={Link} to = {'/temas'} variant={buttonOptions}>
                     Salir
                 </StyledButton>

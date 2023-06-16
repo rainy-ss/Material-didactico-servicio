@@ -1,13 +1,16 @@
-import React from 'react';
+import React, { useState } from 'react';
 import styled from 'styled-components';
 import { Pregunta } from './Pregunta.jsx';
 import { Respuesta } from './Respuesta.jsx';
 import { FaLongArrowAltDown, FaLongArrowAltLeft, FaLongArrowAltRight, FaLongArrowAltUp } from 'react-icons/fa';
+import correcta from '../imagenes/correcta.svg';
+import incorrecta from '../imagenes/incorrecta.svg';
 
-const respuestasUsuario = [];
+let imagen = null;
 
-export function Panel ({ preguntas = [], numeroPregunta, actualizarPregunta, terminar, tema }) {
+export function Panel ({ preguntas = [], respuestasUsuario = [], numeroPregunta, actualizarPregunta, terminar, tema }) {
     const iconos = [FaLongArrowAltUp, FaLongArrowAltRight, FaLongArrowAltDown, FaLongArrowAltLeft];
+    const [aviso, SetAviso] = useState(false);
     /*
         Recibe:
             1. Un arreglo de preguntas.
@@ -21,16 +24,32 @@ export function Panel ({ preguntas = [], numeroPregunta, actualizarPregunta, ter
     */
 
     function manejaRespuesta (id, esCorrecta) {
-        respuestasUsuario.push({ id, esCorrecta });
-        if (numeroPregunta === (preguntas.length - 1)) {
-            localStorage.setItem('respuestas', JSON.stringify(respuestasUsuario));
-            terminar();
+        if (esCorrecta) {
+            /*
+             mandar icono de correcto
+            */
+            imagen = correcta;
         } else {
-            actualizarPregunta();
+            /*
+             mandar icono de incorrecto
+            */
+            imagen = incorrecta;
         }
+        SetAviso(true);
+        setTimeout(() => {
+            respuestasUsuario.push({ id, esCorrecta });
+            if (numeroPregunta === (preguntas.length - 1)) {
+                terminar();
+            } else {
+                SetAviso(false);
+                actualizarPregunta();
+            }
+        }, 1000);
     }
 
     function handleKeyUp (event) {
+        console.log(event);
+
         if (event.key === 'ArrowUp') {
             manejaRespuesta(preguntas[numeroPregunta].respuestas[0].id, preguntas[numeroPregunta].respuestas[0].respuestaCorrecta);
         } else if (event.key === 'ArrowRight') {
@@ -46,14 +65,15 @@ export function Panel ({ preguntas = [], numeroPregunta, actualizarPregunta, ter
 
         <StyledDiv onKeyUp={handleKeyUp} tabIndex={0} >
 
-            <>
-                <Pregunta
-                    link={preguntas[numeroPregunta].pregunta}
-                    tema = {tema}
-                />
+            <Pregunta
+                link={preguntas[numeroPregunta].pregunta}
+                tema = {tema}
+            />
 
-                {
-                    preguntas[numeroPregunta].respuestas.map((respuestaActual, index) => (
+            {
+                aviso
+                    ? null
+                    : preguntas[numeroPregunta].respuestas.map((respuestaActual, index) => (
 
                         <Respuesta
                             key={respuestaActual.id}
@@ -66,8 +86,10 @@ export function Panel ({ preguntas = [], numeroPregunta, actualizarPregunta, ter
 
                     ))
 
-                }
-            </>
+            }
+            {
+                aviso ? <img className='esCorrecta' src={imagen}/> : null
+            }
 
         </StyledDiv>
     );
@@ -87,6 +109,12 @@ const StyledDiv = styled.div`
     justify-items: center;
     align-content: space-evenly;
     align-items: center;
+
+
+    & .esCorrecta{
+        position: absolute;
+        width: 15%;
+    }
 
     @media screen and (orientation:landscape) and (max-height: 550px) {
         min-height: 70vh;

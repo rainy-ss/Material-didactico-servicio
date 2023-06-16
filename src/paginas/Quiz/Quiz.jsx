@@ -8,6 +8,8 @@ import { Resultados } from '../../componentes/Resultados.jsx';
 import { theme } from '../../theme.js';
 import { Temporizador } from '../../componentes/Temporizador.jsx';
 
+const respuestasUsuario = [];
+
 export function Quiz ({ objTema, objQuiz, arreglo = [] }) {
     const [isStarted, setIsStarted] = useState(false);
     const [isFinished, setIsFinished] = useState(false);
@@ -25,6 +27,7 @@ export function Quiz ({ objTema, objQuiz, arreglo = [] }) {
         temporizador = {objQuiz.temporizador}
         isStarted = {isStarted}
         isFinished = {isFinished}
+        terminar = {terminar}
         tiempoFinal = {determinarTiempo}
     />;
 
@@ -37,6 +40,7 @@ export function Quiz ({ objTema, objQuiz, arreglo = [] }) {
     }
 
     function terminar () {
+        localStorage.setItem('respuestas', JSON.stringify(respuestasUsuario));
         setIsFinished(true);
     }
 
@@ -72,6 +76,7 @@ export function Quiz ({ objTema, objQuiz, arreglo = [] }) {
 
                             <Panel
                                 preguntas ={arreglo}
+                                respuestasUsuario = {respuestasUsuario}
                                 numeroPregunta = {numeroPregunta}
                                 actualizarPregunta = {actualizarPregunta}
                                 terminar = {terminar}

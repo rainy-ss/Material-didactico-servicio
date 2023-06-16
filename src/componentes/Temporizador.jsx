@@ -2,7 +2,7 @@ import React, { useState, useRef, useEffect } from 'react';
 import styled from 'styled-components';
 import { theme } from '../theme.js';
 
-export function Temporizador ({ temporizador, isStarted, isFinished = false, tiempoFinal }) {
+export function Temporizador ({ temporizador, isStarted, isFinished = false, terminar, tiempoFinal }) {
     const [secondsLeft, setSecondsLeft] = useState(0);
 
     const secondsLeftRef = useRef(secondsLeft);
@@ -39,6 +39,7 @@ export function Temporizador ({ temporizador, isStarted, isFinished = false, tie
                 if (temporizador > 0 && secondsLeftRef.current === 0) {
                     clearInterval(interval);
                     tiempoFinal(calcularTiempoFinal((temporizador * 60) - secondsLeft));
+                    terminar();
                 }
                 if (isFinished) {
                     clearInterval(interval);
