@@ -15,7 +15,7 @@ Lanza la app en modo desarrollador.
 Abrir http://localhost:5173/ para vizualizar en el navegador.
 
 
-`npm run build`
+`npm build`
 
 Crea la aplicación para producción 
 

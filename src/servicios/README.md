@@ -128,10 +128,12 @@ return (
 );
 ```
 
+--- 
+---
 
 ## `ListaQuizzes`
 
-> Servicio encargado de construir
+> Servicio encargado de construir los quizzes disponibles dentro de los temas.
 
 ### Parametros
 
@@ -174,7 +176,7 @@ useEffect(() => {
 
 ---
 
-a
+Retorna todos los quiz disponibles en el tema en forma de boton.
 
 ```js
 return (
@@ -196,14 +198,55 @@ return (
 
 ## `ListaTemas`
 
+> Servicio encargado de construir la lista de temas para la página.
+
 ### Parametros
 
 Este componente no recibe parametros.
 
 ### Variables  y Constantes
 
-
+- `busqueda`: Su valor inicial es el banco de temas, si el usuario realiza una busqueda se actualiza con el nuevo valor.
 
 ```js
 const [busqueda, setBusqueda] = useState(bancoTemas);
+```
+---
+
+Se recupera lo que el usuario ingreso en el campo de busqueda *entrada-texto* y se busca en cada uno de los elementos del **bancoTemas**  
+
+```js
+function filtrar () {
+        const bancoFiltrado = [];
+        const entrada = document.getElementById('entrada-texto').value;
+
+        bancoTemas.forEach((elemento) => {
+            if (elemento.nombre.toLowerCase().includes(entrada.toLowerCase())) {
+                bancoFiltrado.push(elemento);
+            }
+        });
+        setBusqueda(bancoFiltrado);
+    }
+```
+
+---
+
+Retorna un campo de texto para realizar una busqueda y los temas disponibles en forma de botones.
+
+```js
+return(
+    <StyledDiv>
+        <input id='entrada-texto' type='text' placeholder='🔍 Buscar tema...' onChange={filtrar}/>
+        {
+            busqueda.map((elemento) => (
+                <div key={elemento.id}>
+                    <Tema
+                        informacion= {elemento}
+                    />
+                </div>
+
+            ))
+        }
+    </StyledDiv>
+);
 ```
