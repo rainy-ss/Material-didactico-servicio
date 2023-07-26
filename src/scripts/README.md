@@ -1,4 +1,4 @@
-# Descripción de los Scrips 
+# Descripción de los Scripts 
 
 ## `bancoTemas.js`
 

@@ -8,8 +8,6 @@ import { HiPlus, HiOutlineMinus } from 'react-icons/hi2';
 export function Tema ({ informacion, mostrar = false }) {
     const [clicked, setClicked] = useState(mostrar);
 
-    // Modificaciones: La descripción y los botones no se deben renderizar si la tarjeta esta contraida.
-
     function toggle () {
         setClicked(prev => !prev);
     };

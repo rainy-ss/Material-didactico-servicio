@@ -8,9 +8,6 @@ import { theme } from '../theme.js';
 import { Link } from 'react-router-dom';
 
 export function Informacion ({ iniciar, isStarted, mostrar }) {
-    /*
-        Estado para mostrar la ventana
-     */
 
     return (
         <StyledInfo variant={variantOptionsMain}>
