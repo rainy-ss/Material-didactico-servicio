@@ -668,9 +668,230 @@ return (
 
 ## `Resultados`
 
+Renderiza las estadisticas del usuario.
+
 ### Parametros
 
+- `tiempoFinal`: Tiempo que le tomo al usuario responder el quiz.
+- `preguntas`: Arreglo original del quiz.
+- `temporizador`: Tiempo maximo del quiz.
+- `tema`: Tema del quiz.
+- `id`: Id del quiz seleccionado.
+
 ### Variables  y Constantes
+
+- `showRespuestas`: Indica si se muestra la ventana de respuestas con los SVG.
+- `showVentanaPreguntas`: Contador de la pregunta actual que se muestra en la ventana de respuestas.
+- `respuestas`: Arreglo de respuestas del usuario. 
+
+```js
+const [showRespuestas, setShowRespuestas] = useState(false);
+const [showVentanaPreguntas, setShowVentanaPreguntas] = useState(0);
+const [respuestas, setRespuestas] = useState([]);
+```
+
+---
+
+Rescata del local storage el arreglo de respuestas del usuario y las guarda en el estado **respuestas**.
+
+```js
+useEffect(() => {
+    setRespuestas(JSON.parse(localStorage.getItem('respuestas')));
+}, []);
+```
+
+---
+
+Función que intercala el estado de la ventana de respuestas.
+
+```js
+function mostrarRespuestas () {
+    setShowRespuestas(prev => !prev);
+    setShowVentanaPreguntas(0);
+}
+```
+
+---
+
+Función que incrementa el contador de la pregunta actual.
+
+```js
+function incrementarPregunta () {
+    setShowVentanaPreguntas(prev => prev + 1);
+}
+```
+
+---
+
+Función que decrementa el contador de la pregunta actual.
+
+```js
+function decrementarPregunta () {
+    setShowVentanaPreguntas(prev => prev - 1);
+}
+```
+
+---
+
+Determina si ya llegamos al máximo de preguntas disponibles.
+
+```js
+function determinarMaximo () {
+    return (respuestas.length - 1 === showVentanaPreguntas);
+}
+```
+
+---
+
+Determina si ya llegamos al minimo de preguntas disponibles.
+
+```js
+function determinarMinimo () {
+    return (showVentanaPreguntas === 0);
+}
+```
+
+---
+
+Da formato al tiempo máximo del quiz o indica NA si no había tiempo máximo. 
+
+```js
+function calcularTiempoTotal () {
+    if (temporizador > 0) {
+        return temporizador + ':00';
+    } else {
+        return 'NA';
+    }
+}
+```
+
+---
+
+Recarga la página para volver a iniciar el quiz.
+
+```js
+function recargarPagina () {
+    location.reload();
+}
+```
+
+---
+
+Calcula tu promedio en base a las respuestas correctas.
+
+```js
+function calcularCalificacion () {
+    let promedio = 0;
+
+    if (respuestas.length > 0) {
+        let contador = 0;
+
+        respuestas.forEach((respuesta) => {
+            if (respuesta.esCorrecta) {
+                contador++;
+            }
+        });
+
+        promedio = (contador / preguntas.length) * 100;
+    }
+
+    return promedio;
+}
+```
+
+---
+
+Retorna la ventana de estadisticas o las ventanas de respuestas, además incluye la barra inferior con opciones para el usuario.
+
+```js
+return (
+
+    <StyledDiv variant={mainOptions}>
+
+        {
+            !showRespuestas
+                ? <>
+                    <StyledHeader>
+                        <h1>Tus resultados</h1>
+                        <hr />
+                    </StyledHeader>
+
+                    <StyledDatos>
+                        <StyledEstadisticas>
+                            <ul className="lista-est">
+                                <li><strong>Tu tiempo:</strong> {tiempoFinal}</li>
+                                <li><strong>Preguntas contestadas:</strong> {respuestas.length}</li>
+                            </ul>
+
+                            <StyledCalificacion variant={califOptions}>
+                                <p>{calcularCalificacion()}/100</p>
+                                <h3>Calificacion final</h3>
+                            </StyledCalificacion>
+
+                        </StyledEstadisticas>
+
+                        <StyledListaDatosQuiz>
+                            <li><strong>Total de preguntas:</strong> {preguntas.length}</li>
+                            <li><strong>Tiempo total:</strong> {calcularTiempoTotal()}</li>
+                        </StyledListaDatosQuiz>
+
+                    </StyledDatos>
+                </>
+                : <>
+                    <p className='contador'>{(showVentanaPreguntas + 1) + '/' + preguntas.length }</p>
+                    <PanelRespuestas
+                        preguntas = {preguntas}
+                        respuestas = {respuestas}
+                        numeroPregunta = {showVentanaPreguntas}
+                        tema = {tema}
+                    />
+                </>
+
+        }
+
+        <StyledBtnDiv variant={btnDivOptions}>
+
+            <StyledButton onClick={recargarPagina} className="btn try" variant={buttonOptions}>
+                Intentar de nuevo
+            </StyledButton>
+            {
+                respuestas.length === 0
+                    ? null
+                    : <StyledNavDiv>
+                        {
+                            showRespuestas &&
+                    <StyledButton className='icons' onClick = {decrementarPregunta} variant={determinarMinimo() ? buttonOptionsNavigationDisabled : buttonOptionsNavigationActive}>
+                        <IconContext.Provider value={{ className: 'icons' }}>
+                            <HiArrowLeft />
+                        </IconContext.Provider>
+                    </StyledButton>
+                        }
+
+                        <StyledButton variant={buttonOptionsNavigationActive} onClick={mostrarRespuestas}>
+                            {showRespuestas ? 'Mostrar Estadísticas' : 'Mostrar Respuestas'}
+                        </StyledButton>
+                        {
+                            showRespuestas &&
+                    <StyledButton onClick = {incrementarPregunta} variant={determinarMaximo() ? buttonOptionsNavigationDisabled : buttonOptionsNavigationActive}>
+                        <IconContext.Provider value={{ className: 'icons' }}>
+                            <HiArrowRight />
+                        </IconContext.Provider>
+
+                    </StyledButton>
+                        }
+
+                    </StyledNavDiv>
+            }
+
+            <StyledButton className="btn exit" as={Link} to = {'/temas'} variant={buttonOptions}>
+                Salir
+            </StyledButton>
+
+        </StyledBtnDiv>
+
+    </StyledDiv>
+);
+```
 
 ---
 ---
@@ -734,12 +955,130 @@ return (
 
 ## `Temporizador`
 
+Componente que renderiza el temporizador del quiz.
+
 ### Parametros
+
+- `temporizador`: Indica el tiempo maximo del quiz.
+- `isStarted`: Indica si ha comenzado el quiz.
+- `isFinished`: Indica si ha finalizado el quiz.
+- `terminar`: Función que finaliza el quiz. 
+- `tiempoFinal`: Función que guarda el tiempo final del usuario.
 
 ### Variables  y Constantes
 
+- `secondsLeft`: Contando cuantos segundos faltan.
+- `secondsLeftRef`: Referencia al estado secondsLeft.
+- `addSubst`: Determina si debe sumar o restar segundos. 
+- `minutes`: Almacena los minutos del temporizador.
+- `seconds`: Almacena los segundos del temporizador.
+
+```js
+const [secondsLeft, setSecondsLeft] = useState(0);
+const secondsLeftRef = useRef(secondsLeft);
+const addSubst = (temporizador > 0 ? -1 : 1);
+const minutes = Math.floor(secondsLeft / 60);
+let seconds = secondsLeft % 60;
+```
+
+---
+
+Sirve para dar formato al temporizador agregando un **0** en caso de que los segundos tengan un solo digito.
+
+```js
+if (seconds < 10) seconds = '0' + seconds;
+```
+
+---
+
+Inicializa el temporizador.
+
+```js
+function initTimer () {
+    const tiempoInicial = temporizador;
+    secondsLeftRef.current = tiempoInicial * 60;
+    setSecondsLeft(secondsLeftRef.current);
+}
+
+```
+---
+
+Suma o resta un segundo dependiendo del valor de **addSubst**
+
+```js
+function tick () {
+    secondsLeftRef.current += 1 * addSubst;
+    setSecondsLeft(secondsLeftRef.current);
+}
+
+```
+
+---
+
+Da formato al tiempo final del usuario.
+
+```js
+function calcularTiempoFinal (segundos) {
+    let minutes = Math.floor(segundos / 60);
+    if (minutes < 10) minutes = '0' + minutes;
+    let seconds = segundos % 60;
+    if (seconds < 10) seconds = '0' + seconds;
+    return minutes + ':' + seconds;
+}
+```
+
+---
+
+Define el useEffect para que inicie cuando el usuario ha indicado que quiere comenzar el quiz, se declara un intervalo cada segundo que va modificando el valor del temporizador por medio de la función **tick()** y en cada intervalo revisa si se alcanzo el tiempo maximo del quiz o el usuario ha finalizado. 
+
+```js
+useEffect(() => {
+    let interval;
+    initTimer();
+    if (isStarted) {
+        interval = setInterval(() => {
+            if (temporizador > 0 && secondsLeftRef.current === 0) {
+                clearInterval(interval);
+                tiempoFinal(calcularTiempoFinal((temporizador * 60) - secondsLeft));
+                terminar();
+            }
+            if (isFinished) {
+                clearInterval(interval);
+                const tiempo = (temporizador > 0) ? calcularTiempoFinal((temporizador * 60) - secondsLeft) : calcularTiempoFinal(secondsLeft);
+                tiempoFinal(tiempo);
+            }
+
+            tick();
+        }, 1000);
+    }
+}, [isStarted, isFinished]);
+```
+
+
+---
+
+Retorna un componente que muestra el tiempo del quiz al usuario.
+
+```js
+return (
+    <>
+        {
+            isFinished
+                ? null
+                : <StyledTempo variant = {variantOptions}>
+                    <p>{minutes}:{seconds}</p>
+                </StyledTempo>
+
+        }
+    </>
+
+);
+```
+
 ---
 ---
+
+
 
 ## `TituloConImagen`
 
